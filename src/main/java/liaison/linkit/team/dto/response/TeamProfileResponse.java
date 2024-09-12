@@ -24,9 +24,6 @@ public class TeamProfileResponse {
     // 4.3. 프로필 완성도
     private final TeamCompletionResponse teamCompletionResponse;
 
-    // 4.4. 희망 팀빌딩 분야
-    private final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse;
-
     // 4.5. 팀원 공고
     private final List<TeamMemberAnnouncementResponse> teamMemberAnnouncementResponses;
 
@@ -49,7 +46,6 @@ public class TeamProfileResponse {
         this.isTeamProfileEssential = false;
         this.teamMiniProfileResponse = null;
         this.teamCompletionResponse = null;
-        this.teamProfileTeamBuildingFieldResponse = null;
         this.teamMemberAnnouncementResponses = null;
         this.activityResponse = null;
         this.teamProfileIntroductionResponse = null;
@@ -58,17 +54,10 @@ public class TeamProfileResponse {
         this.teamAttachResponse = null;
     }
 
-//    public TeamProfileResponse() {
-//        this.isTeamProfileEssential = false;
-//        this.teamMiniProfileResponse = null;
-//
-//    }
-
     public static TeamProfileResponse teamProfileItems(
             final boolean isTeamProfileEssential,
             final TeamMiniProfileResponse teamMiniProfileResponse,
             final TeamCompletionResponse teamCompletionResponse,
-            final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse,
             final List<TeamMemberAnnouncementResponse> teamMemberAnnouncementResponse,
             final ActivityResponse activityResponse,
             final TeamProfileIntroductionResponse teamProfileIntroductionResponse,
@@ -80,7 +69,6 @@ public class TeamProfileResponse {
                 isTeamProfileEssential,
                 teamMiniProfileResponse,
                 teamCompletionResponse,
-                teamProfileTeamBuildingFieldResponse,
                 teamMemberAnnouncementResponse,
                 activityResponse,
                 teamProfileIntroductionResponse,

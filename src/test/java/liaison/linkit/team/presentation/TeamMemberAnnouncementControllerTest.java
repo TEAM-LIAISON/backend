@@ -63,16 +63,12 @@ public class TeamMemberAnnouncementControllerTest extends ControllerTest {
 
     private void makeTeamMemberAnnouncement() throws Exception {
         final TeamMemberAnnouncementRequest firstTeamMemberAnnouncementRequest = new TeamMemberAnnouncementRequest(
-                "개발·데이터",
                 "주요 업무입니다.",
-                Arrays.asList("서버 개발", "DevOps"),
                 "지원 절차입니다."
         );
 
         final TeamMemberAnnouncementRequest secondTeamMemberAnnouncementRequest = new TeamMemberAnnouncementRequest(
-                "기획·경영",
                 "주요 업무입니다.",
-                Arrays.asList("사업 개발"),
                 "지원 절차입니다."
         );
 
@@ -136,9 +132,7 @@ public class TeamMemberAnnouncementControllerTest extends ControllerTest {
     void updateTeamMemberAnnouncement() throws Exception {
         // given
         final TeamMemberAnnouncementRequest teamMemberAnnouncementRequest = new TeamMemberAnnouncementRequest(
-                "개발·데이터",
                 "주요 업무입니다.",
-                Arrays.asList("서버 개발", "DevOps", "게임 디자인"),
                 "지원 절차입니다."
         );
 
@@ -162,18 +156,10 @@ public class TeamMemberAnnouncementControllerTest extends ControllerTest {
                                         .description("팀원 공고 ID")
                         ),
                         requestFields(
-                                fieldWithPath("jobRoleName")
-                                        .type(JsonFieldType.STRING)
-                                        .description("직무/역할 (4가지 항목)")
-                                        .attributes(field("constraint", "문자열")),
                                 fieldWithPath("mainBusiness")
                                         .type(JsonFieldType.STRING)
                                         .description("주요 업무")
                                         .attributes(field("constraint", "문자열")),
-                                fieldWithPath("skillNames")
-                                        .type(JsonFieldType.ARRAY)
-                                        .description("보유 역량")
-                                        .attributes(field("constraint", "문자열의 배열")),
                                 fieldWithPath("applicationProcess")
                                         .type(JsonFieldType.STRING)
                                         .description("지원 절차")
@@ -187,9 +173,7 @@ public class TeamMemberAnnouncementControllerTest extends ControllerTest {
     void createTeamMemberAnnouncement() throws Exception {
         // given
         final TeamMemberAnnouncementRequest teamMemberAnnouncementRequest = new TeamMemberAnnouncementRequest(
-                "개발·데이터",
                 "주요 업무입니다.",
-                Arrays.asList("서버 개발", "DevOps"),
                 "지원 절차입니다."
         );
         // when
@@ -208,18 +192,10 @@ public class TeamMemberAnnouncementControllerTest extends ControllerTest {
                                         .attributes(field("constraint", "문자열(jwt)"))
                         ),
                         requestFields(
-                                fieldWithPath("jobRoleName")
-                                        .type(JsonFieldType.STRING)
-                                        .description("직무/역할 (4가지 항목)")
-                                        .attributes(field("constraint", "문자열")),
                                 fieldWithPath("mainBusiness")
                                         .type(JsonFieldType.STRING)
                                         .description("주요 업무")
                                         .attributes(field("constraint", "문자열")),
-                                fieldWithPath("skillNames")
-                                        .type(JsonFieldType.ARRAY)
-                                        .description("보유 역량")
-                                        .attributes(field("constraint", "문자열의 배열")),
                                 fieldWithPath("applicationProcess")
                                         .type(JsonFieldType.STRING)
                                         .description("지원 절차")
@@ -235,16 +211,12 @@ public class TeamMemberAnnouncementControllerTest extends ControllerTest {
     void createTeamMemberAnnouncementList() throws Exception {
         // given
         final TeamMemberAnnouncementRequest firstTeamMemberAnnouncementRequest = new TeamMemberAnnouncementRequest(
-                "개발·데이터",
                 "주요 업무입니다.",
-                Arrays.asList("서버 개발", "DevOps"),
                 "지원 절차입니다."
         );
 
         final TeamMemberAnnouncementRequest secondTeamMemberAnnouncementRequest = new TeamMemberAnnouncementRequest(
-                "기획·경영",
                 "주요 업무입니다.",
-                Arrays.asList("사업 개발"),
                 "지원 절차입니다."
         );
 
@@ -266,23 +238,14 @@ public class TeamMemberAnnouncementControllerTest extends ControllerTest {
                                                 .attributes(field("constraint", "문자열(jwt)"))
                                 ),
                                 requestFields(
-                                        fieldWithPath("[].jobRoleName")
-                                                .type(JsonFieldType.STRING)
-                                                .description("직무/역할 (4가지 항목)")
-                                                .attributes(field("constraint", "문자열")),
                                         fieldWithPath("[].mainBusiness")
                                                 .type(JsonFieldType.STRING)
                                                 .description("주요 업무")
                                                 .attributes(field("constraint", "문자열")),
-                                        fieldWithPath("[].skillNames")
-                                                .type(JsonFieldType.ARRAY)
-                                                .description("보유 역량")
-                                                .attributes(field("constraint", "문자열의 배열")),
                                         fieldWithPath("[].applicationProcess")
                                                 .type(JsonFieldType.STRING)
                                                 .description("지원 절차")
                                                 .attributes(field("constraint", "문자열"))
-
                                 )
                         )
                 );

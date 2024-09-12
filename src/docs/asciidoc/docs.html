@@ -778,7 +778,7 @@ Content-Type: application/json;charset=UTF-8
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Set-Cookie: refresh-token=refreshToken; Path=/; Max-Age=604800; Expires=Sun, 8 Sep 2024 15:22:14 GMT; Secure; HttpOnly; SameSite=None
+Set-Cookie: refresh-token=refreshToken; Path=/; Max-Age=604800; Expires=Thu, 19 Sep 2024 06:36:53 GMT; Secure; HttpOnly; SameSite=None
 Content-Type: application/json;charset=UTF-8
 Content-Length: 136
 
@@ -1205,19 +1205,12 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 1692
+Content-Length: 1407
 
 {
-  "profileTeamBuildingFieldResponse" : {
-    "teamBuildingFieldNames" : [ "공모전", "대회", "창업" ]
-  },
   "profileRegionResponse" : {
     "cityName" : "서울특별시",
     "divisionName" : "강남구"
-  },
-  "jobAndSkillResponse" : {
-    "jobRoleNames" : [ "공모전, 대회, 창업" ],
-    "skillNames" : [ "Notion, Figma" ]
   },
   "educationResponses" : [ {
     "id" : 1,
@@ -1258,7 +1251,6 @@ Content-Length: 1692
     "isActivate" : true,
     "myKeywordNames" : [ "2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년" ],
     "memberName" : "권동민",
-    "jobRoleNames" : [ "개발·데이터" ],
     "isPrivateSaved" : false
   }
 }</code></pre>
@@ -1278,31 +1270,6 @@ Content-Length: 1692
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileTeamBuildingFieldResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 항목</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileTeamBuildingFieldResponse.teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">나의 직무/역할 및 보유 기술 정보</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse.jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 명칭</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse.skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 기술 명칭</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileRegionResponse</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
@@ -1413,11 +1380,6 @@ Content-Length: 1692
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 이름</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>miniProfileResponse.jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무 및 역할</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1425,42 +1387,10 @@ Content-Length: 1692
 <h3 id="_1_5_2_온보딩_내_이력서_희망_팀빌딩_분야_생성수정"><a class="link" href="#_1_5_2_온보딩_내_이력서_희망_팀빌딩_분야_생성수정">1.5.2. 온보딩 - 내 이력서 - 희망 팀빌딩 분야 생성/수정</a></h3>
 <div class="sect3">
 <h4 id="_요청_7"><a class="link" href="#_요청_7">요청</a></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /private/team_building_field HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Authorization: accessToken
-Cookie: refresh-token=refreshToken
-
-{
-  "teamBuildingFieldNames" : [ "공모전", "대회", "창업" ]
-}</code></pre>
+<div class="paragraph">
+<p>Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/team-building-field-controller-test/create-profile-team-building-field/http-request.adoc[]
+Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/team-building-field-controller-test/create-profile-team-building-field/request-fields.adoc[]</p>
 </div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Constraint</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빋딩 분야(7가지 항목)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -1516,49 +1446,10 @@ Cookie: refresh-token=refreshToken
 <h3 id="_1_5_4_온보딩_내_이력서_희망_역할_보유_기술_생성수정"><a class="link" href="#_1_5_4_온보딩_내_이력서_희망_역할_보유_기술_생성수정">1.5.4. 온보딩 - 내 이력서 - 희망 역할, 보유 기술 생성/수정</a></h3>
 <div class="sect3">
 <h4 id="_요청_9"><a class="link" href="#_요청_9">요청</a></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /private/job/skill HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Authorization: accessToken
-Cookie: refresh-token=refreshToken
-
-{
-  "jobRoleNames" : [ "공모전, 대회, 창업" ],
-  "skillNames" : [ "Notion, Figma" ]
-}</code></pre>
+<div class="paragraph">
+<p>Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/profile-on-boarding-controller-test/create-on-boarding-personal-job-and-skill/http-request.adoc[]
+Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/profile-on-boarding-controller-test/create-on-boarding-personal-job-and-skill/request-fields.adoc[]</p>
 </div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Constraint</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 직무/역할</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 기술</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -1815,11 +1706,10 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 800
+Content-Length: 732
 
 {
   "onBoardingFieldTeamInformResponse" : {
-    "teamBuildingFieldNames" : [ "공모전", "대회", "창업" ],
     "teamName" : "리에종",
     "sectorName" : "플랫폼",
     "sizeType" : "1-5인"
@@ -1860,11 +1750,6 @@ Content-Length: 800
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>onBoardingFieldTeamInformResponse</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 항목과 미니 프로필 일부 정보</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onBoardingFieldTeamInformResponse.teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 이름</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>onBoardingFieldTeamInformResponse.teamName</code></p></td>
@@ -1957,7 +1842,6 @@ Authorization: accessToken
 Cookie: refresh-token=refreshToken
 
 {
-  "teamBuildingFieldNames" : [ "공모전", "대회" ],
   "teamName" : "리에종",
   "sizeType" : "1-5인",
   "sectorName" : "플랫폼"
@@ -1980,12 +1864,6 @@ Cookie: refresh-token=refreshToken
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야(7가지 항목)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
@@ -2171,7 +2049,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 3294
+Content-Length: 2676
 
 {
   "miniProfileResponse" : {
@@ -2181,29 +2059,20 @@ Content-Length: 3294
     "isActivate" : true,
     "myKeywordNames" : [ "2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년" ],
     "memberName" : "권동민",
-    "jobRoleNames" : [ "개발·데이터" ],
     "isPrivateSaved" : false
   },
   "completionResponse" : {
     "completion" : "100.0",
-    "awards" : true,
-    "profileTeamBuildingField" : true,
-    "profileRegion" : true,
     "introduction" : true,
     "antecedents" : true,
     "education" : true,
+    "profileRegion" : true,
     "profileSkill" : true,
+    "awards" : true,
     "attach" : true
   },
   "profileIntroductionResponse" : {
     "introduction" : "안녕하세요, 저는 다양한 프로젝트와 혁신적인 아이디어를 구현하는 데 열정을 가진 기획자입니다. 대학에서 경영학을 전공하고, 여러 기업에서 프로젝트 매니저와 기획자로서의 경험을 쌓아왔습니다.."
-  },
-  "jobAndSkillResponse" : {
-    "jobRoleNames" : [ "공모전, 대회, 창업" ],
-    "skillNames" : [ "Notion, Figma" ]
-  },
-  "profileTeamBuildingFieldResponse" : {
-    "teamBuildingFieldNames" : [ "공모전", "대회", "창업" ]
   },
   "profileRegionResponse" : {
     "cityName" : "서울특별시",
@@ -2258,17 +2127,6 @@ Content-Length: 3294
     "awardsMonth" : 3,
     "awardsDescription" : "성균관대학교 캠퍼스타운에 최종 선정되었습니다."
   } ],
-  "attachResponse" : {
-    "attachUrlResponseList" : [ {
-      "id" : 1,
-      "attachUrlName" : "깃허브",
-      "attachUrlPath" : "https://github.com/TEAM-LIAISON"
-    }, {
-      "id" : 2,
-      "attachUrlName" : "노션",
-      "attachUrlPath" : "https://www.notion.so/ko-kr"
-    } ]
-  },
   "privateProfileEssential" : true
 }</code></pre>
 </div>
@@ -2323,11 +2181,6 @@ Content-Length: 3294
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>miniProfileResponse.jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무 및 역할</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">프로필의 완성도 정보</p></td>
@@ -2341,16 +2194,6 @@ Content-Length: 3294
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.introduction</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">소개의 완성 여부</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.profileSkill</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">스킬 섹션의 완성 여부</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.profileTeamBuildingField</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀 빌딩 필드의 완성 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.profileRegion</code></p></td>
@@ -2386,31 +2229,6 @@ Content-Length: 3294
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileIntroductionResponse.introduction</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">소개 내용</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">나의 직무/역할 및 보유 기술 정보</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse.jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 명칭</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse.skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 기술 명칭</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileTeamBuildingFieldResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀 빌딩 필드 응답</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileTeamBuildingFieldResponse.teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀 빌딩 필드 이름</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileRegionResponse</code></p></td>
@@ -2536,26 +2354,6 @@ Content-Length: 3294
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>awardsResponse[].awardsDescription</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수상 내용</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부 파일 정보</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse.attachUrlResponseList[].id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부 URL ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse.attachUrlResponseList[].attachUrlName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부된 URL 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse.attachUrlResponseList[].attachUrlPath</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부된 URL</p></td>
 </tr>
 </tbody>
 </table>
@@ -3276,85 +3074,20 @@ Cookie: refresh-token=refreshToken</code></pre>
 <h3 id="_3_11_내_이력서_첨부_url_생성수정"><a class="link" href="#_3_11_내_이력서_첨부_url_생성수정">3.11. 내 이력서 - 첨부 URL 생성/수정</a></h3>
 <div class="sect3">
 <h4 id="_요청_20"><a class="link" href="#_요청_20">요청</a></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /private/attach/url HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Authorization: accessToken
-Cookie: refresh-token=refreshToken
-
-[ {
-  "attachUrlName" : "깃허브",
-  "attachUrlPath" : "https://github.com/TEAM-LIAISON"
-}, {
-  "attachUrlName" : "노션",
-  "attachUrlPath" : "https://www.notion.no"
-} ]</code></pre>
+<div class="paragraph">
+<p>Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/attach-controller-test/create-attach-url/http-request.adoc[]
+Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/attach-controller-test/create-attach-url/request-fields.adoc[]</p>
 </div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Constraint</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].attachUrlName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">웹 링크 이름</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].attachUrlPath</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">웹 링크 경로</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_3_11_내_이력서_첨부_url_삭제"><a class="link" href="#_3_11_내_이력서_첨부_url_삭제">3.11. 내 이력서 - 첨부 URL 삭제</a></h3>
 <div class="sect3">
 <h4 id="_요청_21"><a class="link" href="#_요청_21">요청</a></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /private/attach/url/1 HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Authorization: accessToken
-Cookie: refresh-token=refreshToken</code></pre>
+<div class="paragraph">
+<p>Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/attach-controller-test/delete-attach-url/http-request.adoc[]
+Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/attach-controller-test/delete-attach-url/path-parameters.adoc[]</p>
 </div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. /private/attach/url/{attachUrlId}</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachUrlId</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부 URL ID</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -3384,7 +3117,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 3122
+Content-Length: 2754
 
 {
   "teamMiniProfileResponse" : {
@@ -3399,33 +3132,25 @@ Content-Length: 3122
   },
   "teamCompletionResponse" : {
     "teamCompletion" : "100.0",
-    "teamProfileTeamBuildingField" : true,
-    "history" : true,
-    "activity" : true,
     "teamMemberAnnouncement" : true,
     "teamIntroduction" : true,
     "teamMemberIntroduction" : true,
-    "teamAttach" : true
-  },
-  "teamProfileTeamBuildingFieldResponse" : {
-    "teamProfileTeamBuildingFieldNames" : [ "공모전", "대회", "창업" ]
+    "teamAttach" : true,
+    "history" : true,
+    "activity" : true
   },
   "teamMemberAnnouncementResponses" : [ {
     "id" : 1,
     "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
     "teamName" : "리에종",
-    "jobRoleName" : "기획·경영",
     "mainBusiness" : "주요 업무입니다. (첫번째 팀원 공고)",
-    "skillNames" : [ "서비스 기획", "데이터 엔지니어" ],
     "applicationProcess" : "지원 절차입니다. (첫번째 팀원 공고)",
     "isTeamSaved" : false
   }, {
     "id" : 2,
     "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
     "teamName" : "리에종",
-    "jobRoleName" : "디자인",
     "mainBusiness" : "주요 업무입니다. (두번째 팀원 공고)",
-    "skillNames" : [ "웹 디자인", "앱 디자인" ],
     "applicationProcess" : "지원 절차입니다. (두번째 팀원 공고)",
     "isTeamSaved" : false
   } ],
@@ -3548,11 +3273,6 @@ Content-Length: 3122
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀 소개서 완성도 % 값</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamCompletionResponse.teamProfileTeamBuildingField</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 기입 여부</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamCompletionResponse.teamMemberAnnouncement</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고</p></td>
@@ -3583,16 +3303,6 @@ Content-Length: 3122
 <td class="tableblock halign-left valign-top"><p class="tableblock">첨부</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamProfileTeamBuildingFieldResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 응답 객체</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamProfileTeamBuildingFieldResponse.teamProfileTeamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고 응답 객체</p></td>
@@ -3608,19 +3318,9 @@ Content-Length: 3122
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무, 역할 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].mainBusiness</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고 주요 업무</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 역량 이름 배열</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].applicationProcess</code></p></td>
@@ -3753,7 +3453,6 @@ Authorization: accessToken
 Cookie: refresh-token=refreshToken
 
 {
-  "teamBuildingFieldNames" : null,
   "teamName" : "리에종",
   "sizeType" : "1-5인",
   "sectorName" : "플랫폼"
@@ -3776,12 +3475,6 @@ Cookie: refresh-token=refreshToken
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야(7가지 항목)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
@@ -3806,42 +3499,10 @@ Cookie: refresh-token=refreshToken
 </div>
 <div class="sect2">
 <h3 id="_4_4_팀_소개서_희망_팀빌딩_분야_생성수정"><a class="link" href="#_4_4_팀_소개서_희망_팀빌딩_분야_생성수정">4.4. 팀 소개서 - 희망 팀빌딩 분야 생성/수정</a></h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /team/team_building_field HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Authorization: accessToken
-Cookie: refresh-token=refreshToken
-
-{
-  "teamBuildingFieldNames" : [ "공모전", "대회", "창업" ]
-}</code></pre>
+<div class="paragraph">
+<p>Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/team-profile-team-building-field-controller-test/create-team-profile-team-building-field/http-request.adoc[]
+Unresolved directive in docs.adoc - include::/Users/gwondongmin/Desktop/Linkit_Dev/linkit/build/generated-snippets/team-profile-team-building-field-controller-test/create-team-profile-team-building-field/request-fields.adoc[]</p>
 </div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Constraint</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빋딩 분야(7가지 항목)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="_4_5_팀_소개서_팀원_공고_단일_생성"><a class="link" href="#_4_5_팀_소개서_팀원_공고_단일_생성">4.5. 팀 소개서 - 팀원 공고 단일 생성</a></h3>
@@ -3853,9 +3514,7 @@ Authorization: accessToken
 Cookie: refresh-token=refreshToken
 
 {
-  "jobRoleName" : "개발·데이터",
   "mainBusiness" : "주요 업무입니다.",
-  "skillNames" : [ "서버 개발", "DevOps" ],
   "applicationProcess" : "지원 절차입니다."
 }</code></pre>
 </div>
@@ -3877,22 +3536,10 @@ Cookie: refresh-token=refreshToken
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 (4가지 항목)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainBusiness</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">주요 업무</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">문자열</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 역량</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>applicationProcess</code></p></td>
@@ -3913,9 +3560,7 @@ Authorization: accessToken
 Cookie: refresh-token=refreshToken
 
 {
-  "jobRoleName" : "개발·데이터",
   "mainBusiness" : "주요 업무입니다.",
-  "skillNames" : [ "서버 개발", "DevOps", "게임 디자인" ],
   "applicationProcess" : "지원 절차입니다."
 }</code></pre>
 </div>
@@ -3937,22 +3582,10 @@ Cookie: refresh-token=refreshToken
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 (4가지 항목)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainBusiness</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">주요 업무</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">문자열</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 역량</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">문자열의 배열</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>applicationProcess</code></p></td>
@@ -3963,7 +3596,7 @@ Cookie: refresh-token=refreshToken
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. /team/member/announcement/{teamMemberAnnouncementId}</caption>
+<caption class="title">Table 8. /team/member/announcement/{teamMemberAnnouncementId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3997,7 +3630,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. /team/members/announcements/{teamMemberAnnouncementId}</caption>
+<caption class="title">Table 9. /team/members/announcements/{teamMemberAnnouncementId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4168,7 +3801,7 @@ Cookie: refresh-token=refreshToken
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. /team/member/{teamMemberIntroductionId}</caption>
+<caption class="title">Table 10. /team/member/{teamMemberIntroductionId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4198,7 +3831,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 12. /team/members/{teamMemberIntroductionId}</caption>
+<caption class="title">Table 11. /team/members/{teamMemberIntroductionId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4351,7 +3984,7 @@ Cookie: refresh-token=refreshToken
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 13. /team/history/{historyId}</caption>
+<caption class="title">Table 12. /team/history/{historyId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4381,7 +4014,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. /team/history/{historyId}</caption>
+<caption class="title">Table 13. /team/history/{historyId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4465,7 +4098,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. /team/attach/url/{teamAttachUrlId}</caption>
+<caption class="title">Table 14. /team/attach/url/{teamAttachUrlId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4513,18 +4146,6 @@ Content-Type: application/json;charset=UTF-8</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamBuildingFieldName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 필터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 필터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skillName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 역량 필터</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cityName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">지역 (시/도) 필터</p></td>
 </tr>
@@ -4544,7 +4165,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 691
+Content-Length: 645
 
 {
   "content" : [ {
@@ -4554,7 +4175,6 @@ Content-Length: 691
     "isActivate" : true,
     "myKeywordNames" : [ "2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년" ],
     "memberName" : "권동민",
-    "jobRoleNames" : [ "개발·데이터" ],
     "isPrivateSaved" : false
   } ],
   "pageable" : "INSTANCE",
@@ -4617,11 +4237,6 @@ Content-Length: 691
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].memberName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무 및 역할 이름 배열</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].isPrivateSaved</code></p></td>
@@ -4742,18 +4357,6 @@ Cookie: refresh-token=refreshToken</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamBuildingFieldName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 필터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 필터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skillName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 역량 필터</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cityName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">지역 (시/도) 필터</p></td>
 </tr>
@@ -4773,7 +4376,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 690
+Content-Length: 644
 
 {
   "content" : [ {
@@ -4783,7 +4386,6 @@ Content-Length: 690
     "isActivate" : true,
     "myKeywordNames" : [ "2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년" ],
     "memberName" : "권동민",
-    "jobRoleNames" : [ "개발·데이터" ],
     "isPrivateSaved" : true
   } ],
   "pageable" : "INSTANCE",
@@ -4846,11 +4448,6 @@ Content-Length: 690
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].memberName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무 및 역할 이름 배열</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].isPrivateSaved</code></p></td>
@@ -4994,18 +4591,6 @@ Content-Type: application/json;charset=UTF-8</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamBuildingFieldName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 필터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 필터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>skillName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 역량 필터</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cityName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">지역 (시/도) 필터</p></td>
 </tr>
@@ -5029,7 +4614,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 1095
+Content-Length: 1000
 
 {
   "content" : [ {
@@ -5047,9 +4632,7 @@ Content-Length: 1095
       "id" : 1,
       "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
       "teamName" : "리에종",
-      "jobRoleName" : "개발·데이터",
       "mainBusiness" : "주요 업무입니다.",
-      "skillNames" : [ "서버 개발", "DevOps" ],
       "applicationProcess" : "지원 절차입니다.",
       "isTeamSaved" : true
     }
@@ -5141,19 +4724,9 @@ Content-Length: 1095
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고 직무 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.mainBusiness</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">주요 업무</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">요구되는 기술 목록</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.applicationProcess</code></p></td>
@@ -5231,7 +4804,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 1095
+Content-Length: 1000
 
 {
   "content" : [ {
@@ -5249,9 +4822,7 @@ Content-Length: 1095
       "id" : 1,
       "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
       "teamName" : "리에종",
-      "jobRoleName" : "개발·데이터",
       "mainBusiness" : "주요 업무입니다.",
-      "skillNames" : [ "서버 개발", "DevOps" ],
       "applicationProcess" : "지원 절차입니다.",
       "isTeamSaved" : true
     }
@@ -5343,19 +4914,9 @@ Content-Length: 1095
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고 직무 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.mainBusiness</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">주요 업무</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">요구되는 기술 목록</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].teamMemberAnnouncementResponse.applicationProcess</code></p></td>
@@ -5428,7 +4989,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. /browse/private/profile/{miniProfileId}</caption>
+<caption class="title">Table 15. /browse/private/profile/{miniProfileId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -5456,7 +5017,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 3275
+Content-Length: 2657
 
 {
   "profileId" : 1,
@@ -5467,29 +5028,20 @@ Content-Length: 3275
     "isActivate" : true,
     "myKeywordNames" : [ "2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년" ],
     "memberName" : "권동민",
-    "jobRoleNames" : [ "개발·데이터" ],
     "isPrivateSaved" : true
   },
   "completionResponse" : {
     "completion" : "100.0",
-    "awards" : true,
-    "profileTeamBuildingField" : true,
-    "profileRegion" : true,
     "introduction" : true,
     "antecedents" : true,
     "education" : true,
+    "profileRegion" : true,
     "profileSkill" : true,
+    "awards" : true,
     "attach" : true
   },
   "profileIntroductionResponse" : {
     "introduction" : "안녕하세요, 저는 다양한 프로젝트와 혁신적인 아이디어를 구현하는 데 열정을 가진 기획자입니다. 대학에서 경영학을 전공하고, 여러 기업에서 프로젝트 매니저와 기획자로서의 경험을 쌓아왔습니다."
-  },
-  "jobAndSkillResponse" : {
-    "jobRoleNames" : [ "공모전, 대회, 창업" ],
-    "skillNames" : [ "Notion, Figma" ]
-  },
-  "profileTeamBuildingFieldResponse" : {
-    "teamBuildingFieldNames" : [ "공모전", "대회", "창업" ]
   },
   "profileRegionResponse" : {
     "cityName" : "서울특별시",
@@ -5543,18 +5095,7 @@ Content-Length: 3275
     "awardsYear" : 2024,
     "awardsMonth" : 3,
     "awardsDescription" : "성균관대학교 캠퍼스타운에 최종 선정되었습니다."
-  } ],
-  "attachResponse" : {
-    "attachUrlResponseList" : [ {
-      "id" : 2,
-      "attachUrlName" : "깃허브",
-      "attachUrlPath" : "https://github.com/TEAM-LIAISON"
-    }, {
-      "id" : 3,
-      "attachUrlName" : "노션",
-      "attachUrlPath" : "https://www.notion.so/ko-kr"
-    } ]
-  }
+  } ]
 }</code></pre>
 </div>
 </div>
@@ -5608,11 +5149,6 @@ Content-Length: 3275
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>miniProfileResponse.jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무 및 역할</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">프로필의 완성도 정보</p></td>
@@ -5626,16 +5162,6 @@ Content-Length: 3275
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.introduction</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">소개의 완성 여부</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.profileSkill</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">스킬 섹션의 완성 여부</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.profileTeamBuildingField</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀 빌딩 필드의 완성 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>completionResponse.profileRegion</code></p></td>
@@ -5671,31 +5197,6 @@ Content-Length: 3275
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileIntroductionResponse.introduction</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">소개 내용</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">나의 직무/역할 및 보유 기술 정보</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse.jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무/역할 명칭</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobAndSkillResponse.skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 기술 명칭</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileTeamBuildingFieldResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀 빌딩 필드 응답</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileTeamBuildingFieldResponse.teamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">팀 빌딩 필드 이름</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileRegionResponse</code></p></td>
@@ -5822,26 +5323,6 @@ Content-Length: 3275
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수상 내용</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부 파일 정보</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse.attachUrlResponseList[].id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부 URL ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse.attachUrlResponseList[].attachUrlName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부된 URL 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachResponse.attachUrlResponseList[].attachUrlPath</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">첨부된 URL</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -5863,7 +5344,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. /browse/team/profile/{teamMiniProfileId}</caption>
+<caption class="title">Table 16. /browse/team/profile/{teamMiniProfileId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -5891,7 +5372,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 3112
+Content-Length: 2744
 
 {
   "teamProfileId" : 1,
@@ -5907,33 +5388,25 @@ Content-Length: 3112
   },
   "teamCompletionResponse" : {
     "teamCompletion" : "100.0",
-    "teamProfileTeamBuildingField" : true,
-    "history" : true,
-    "activity" : true,
     "teamMemberAnnouncement" : true,
     "teamIntroduction" : true,
     "teamMemberIntroduction" : true,
-    "teamAttach" : true
-  },
-  "teamProfileTeamBuildingFieldResponse" : {
-    "teamProfileTeamBuildingFieldNames" : [ "공모전", "대회", "창업" ]
+    "teamAttach" : true,
+    "history" : true,
+    "activity" : true
   },
   "teamMemberAnnouncementResponses" : [ {
     "id" : 1,
     "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
     "teamName" : "리에종",
-    "jobRoleName" : "기획·경영",
     "mainBusiness" : "주요 업무입니다. (첫번째 팀원 공고)",
-    "skillNames" : [ "서비스 기획", "데이터 엔지니어" ],
     "applicationProcess" : "지원 절차입니다. (첫번째 팀원 공고)",
     "isTeamSaved" : false
   }, {
     "id" : 2,
     "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
     "teamName" : "리에종",
-    "jobRoleName" : "디자인",
     "mainBusiness" : "주요 업무입니다. (두번째 팀원 공고)",
-    "skillNames" : [ "웹 디자인", "앱 디자인" ],
     "applicationProcess" : "지원 절차입니다. (두번째 팀원 공고)",
     "isTeamSaved" : false
   } ],
@@ -6055,11 +5528,6 @@ Content-Length: 3112
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀 소개서 완성도 % 값</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamCompletionResponse.teamProfileTeamBuildingField</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 기입 여부</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamCompletionResponse.teamMemberAnnouncement</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고</p></td>
@@ -6090,16 +5558,6 @@ Content-Length: 3112
 <td class="tableblock halign-left valign-top"><p class="tableblock">첨부</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamProfileTeamBuildingFieldResponse</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 응답 객체</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamProfileTeamBuildingFieldResponse.teamProfileTeamBuildingFieldNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">희망 팀빌딩 분야 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고 응답 객체</p></td>
@@ -6115,19 +5573,9 @@ Content-Length: 3112
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무, 역할 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].mainBusiness</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">팀원 공고 주요 업무</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">보유 역량 이름 배열</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>teamMemberAnnouncementResponses[].applicationProcess</code></p></td>
@@ -6268,7 +5716,7 @@ Cookie: refresh-token=refreshToken
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. /private/profile/matching/private/{profileId}</caption>
+<caption class="title">Table 17. /private/profile/matching/private/{profileId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6326,7 +5774,7 @@ Cookie: refresh-token=refreshToken
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 19. /team/profile/matching/private/{profileId}</caption>
+<caption class="title">Table 18. /team/profile/matching/private/{profileId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6384,7 +5832,7 @@ Cookie: refresh-token=refreshToken
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 20. /team/profile/matching/team/{teamMemberAnnouncementId}</caption>
+<caption class="title">Table 19. /team/profile/matching/team/{teamMemberAnnouncementId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6442,7 +5890,7 @@ Cookie: refresh-token=refreshToken
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. /private/profile/matching/team/{teamMemberAnnouncementId}</caption>
+<caption class="title">Table 20. /private/profile/matching/team/{teamMemberAnnouncementId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6910,7 +6358,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. /received/private_to_private/matching/{privateMatchingId}</caption>
+<caption class="title">Table 21. /received/private_to_private/matching/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6938,12 +6386,11 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 242
+Content-Length: 198
 
 {
   "receivedMatchingId" : 1,
   "senderName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "requestMessage" : "권동민님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
   "receivedTeamProfile" : false
 }</code></pre>
@@ -6972,11 +6419,6 @@ Content-Length: 242
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>senderName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">발신자 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">발신자의 희망 역할 및 직무</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestMessage</code></p></td>
@@ -7004,7 +6446,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. /received/team_to_private/matching/{privateMatchingId}</caption>
+<caption class="title">Table 22. /received/team_to_private/matching/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7032,12 +6474,11 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 242
+Content-Length: 198
 
 {
   "receivedMatchingId" : 1,
   "senderName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "requestMessage" : "권동민님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
   "receivedTeamProfile" : false
 }</code></pre>
@@ -7068,11 +6509,6 @@ Content-Length: 242
 <td class="tableblock halign-left valign-top"><p class="tableblock">발신자 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">발신자의 희망 역할 및 직무</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestMessage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">매칭 요청 메시지</p></td>
@@ -7098,7 +6534,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. /received/team_to_team/matching/{teamMatchingId}</caption>
+<caption class="title">Table 23. /received/team_to_team/matching/{teamMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7126,12 +6562,11 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 242
+Content-Length: 198
 
 {
   "receivedMatchingId" : 1,
   "senderName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "requestMessage" : "권동민님이 나의 팀 소개서에 보낸 매칭 요청 메시지입니다.",
   "receivedTeamProfile" : false
 }</code></pre>
@@ -7162,11 +6597,6 @@ Content-Length: 242
 <td class="tableblock halign-left valign-top"><p class="tableblock">발신자 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">발신자의 희망 역할 및 직무</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestMessage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">매칭 요청 메시지</p></td>
@@ -7192,7 +6622,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. /request/private_to_private/matching/{privateMatchingId}</caption>
+<caption class="title">Table 24. /request/private_to_private/matching/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7220,12 +6650,11 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 270
+Content-Length: 226
 
 {
   "requestMatchingId" : 1,
   "receiverName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "requestMessage" : "권동민님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
   "senderType" : "PRIVATE",
   "requestTeamProfile" : false
@@ -7255,11 +6684,6 @@ Content-Length: 270
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>receiverName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">발신자 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">발신자의 희망 역할 및 직무</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestMessage</code></p></td>
@@ -7292,7 +6716,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. /request/team_to_private/matching/{privateMatchingId}</caption>
+<caption class="title">Table 25. /request/team_to_private/matching/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7320,12 +6744,11 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 267
+Content-Length: 223
 
 {
   "requestMatchingId" : 1,
   "receiverName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "requestMessage" : "리에종님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
   "senderType" : "TEAM",
   "requestTeamProfile" : false
@@ -7355,11 +6778,6 @@ Content-Length: 267
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>receiverName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수신자 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">수신자의 희망 역할 및 직무</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestMessage</code></p></td>
@@ -7392,7 +6810,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. /received/team_to_team/matching/{teamMatchingId}</caption>
+<caption class="title">Table 26. /received/team_to_team/matching/{teamMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7420,12 +6838,11 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 242
+Content-Length: 198
 
 {
   "receivedMatchingId" : 1,
   "senderName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "requestMessage" : "권동민님이 나의 팀 소개서에 보낸 매칭 요청 메시지입니다.",
   "receivedTeamProfile" : false
 }</code></pre>
@@ -7454,11 +6871,6 @@ Content-Length: 242
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>senderName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">발신자 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">발신자의 희망 역할 및 직무</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestMessage</code></p></td>
@@ -7491,7 +6903,7 @@ Cookie: refresh-token=refreshToken
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. /allow/private/matching/{privateMatchingId}</caption>
+<caption class="title">Table 27. /allow/private/matching/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7552,7 +6964,7 @@ Cookie: refresh-token=refreshToken
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. /allow/team/matching/{teamMatchingId}</caption>
+<caption class="title">Table 28. /allow/team/matching/{teamMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7608,7 +7020,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. /success/private/matching/contact/{privateMatchingId}</caption>
+<caption class="title">Table 29. /success/private/matching/contact/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7684,7 +7096,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 31. /success/team/matching/contact/{teamMatchingId}</caption>
+<caption class="title">Table 30. /success/team/matching/contact/{teamMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7761,7 +7173,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 32. /delete/request/private/matching/{privateMatchingId}</caption>
+<caption class="title">Table 31. /delete/request/private/matching/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7793,7 +7205,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 33. /delete/request/team/matching/{teamMatchingId}</caption>
+<caption class="title">Table 32. /delete/request/team/matching/{teamMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7826,7 +7238,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 34. /delete/success/private/matching/{privateMatchingId}</caption>
+<caption class="title">Table 33. /delete/success/private/matching/{privateMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7856,7 +7268,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 35. /delete/request/team/matching/{teamMatchingId}</caption>
+<caption class="title">Table 34. /delete/request/team/matching/{teamMatchingId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7893,7 +7305,7 @@ Content-Type: application/x-www-form-urlencoded</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 36. /wish/private/profile/{miniProfileId}</caption>
+<caption class="title">Table 35. /wish/private/profile/{miniProfileId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7926,7 +7338,7 @@ Content-Type: application/x-www-form-urlencoded</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 37. /wish/team/profile/{teamMemberAnnouncementId}</caption>
+<caption class="title">Table 36. /wish/team/profile/{teamMemberAnnouncementId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7958,7 +7370,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 38. /wish/private/profile/{miniProfileId}</caption>
+<caption class="title">Table 37. /wish/private/profile/{miniProfileId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7988,7 +7400,7 @@ Cookie: refresh-token=refreshToken</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 39. /wish/team/profile/{teamMemberAnnouncementId}</caption>
+<caption class="title">Table 38. /wish/team/profile/{teamMemberAnnouncementId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -8029,7 +7441,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 782
+Content-Length: 694
 
 [ {
   "id" : 1,
@@ -8038,7 +7450,6 @@ Content-Length: 782
   "isActivate" : true,
   "myKeywordNames" : [ "2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년" ],
   "memberName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "isPrivateSaved" : true
 }, {
   "id" : 1,
@@ -8047,7 +7458,6 @@ Content-Length: 782
   "isActivate" : true,
   "myKeywordNames" : [ "2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년" ],
   "memberName" : "권동민",
-  "jobRoleNames" : [ "개발·데이터" ],
   "isPrivateSaved" : true
 } ]</code></pre>
 </div>
@@ -8097,11 +7507,6 @@ Content-Length: 782
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].jobRoleNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무 및 역할</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].isPrivateSaved</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">찜 여부</p></td>
@@ -8132,7 +7537,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 1605
+Content-Length: 1424
 
 [ {
   "teamMiniProfileResponse" : {
@@ -8149,9 +7554,7 @@ Content-Length: 1605
     "id" : 1,
     "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
     "teamName" : "리에종",
-    "jobRoleName" : "개발·데이터",
     "mainBusiness" : "주요 업무입니다.",
-    "skillNames" : [ "서버 개발", "DevOps" ],
     "applicationProcess" : "지원 절차입니다.",
     "isTeamSaved" : true
   }
@@ -8170,9 +7573,7 @@ Content-Length: 1605
     "id" : 2,
     "teamLogoImageUrl" : "https://image.linkit.im/images/linkit_logo.png",
     "teamName" : "팀명팀명",
-    "jobRoleName" : "디자인",
     "mainBusiness" : "주요 업무입니다. (두번째 팀원 공고)",
-    "skillNames" : [ "웹 디자인", "앱 디자인" ],
     "applicationProcess" : "지원 절차입니다. (두번째 팀원 공고)",
     "isTeamSaved" : true
   }
@@ -8249,19 +7650,9 @@ Content-Length: 1605
 <td class="tableblock halign-left valign-top"><p class="tableblock">공고에 대한 팀 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].teamMemberAnnouncementResponse.jobRoleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">직무 이름</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].teamMemberAnnouncementResponse.mainBusiness</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">주요 업무 내용</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].teamMemberAnnouncementResponse.skillNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">필요 기술 목록</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].teamMemberAnnouncementResponse.applicationProcess</code></p></td>
@@ -8418,7 +7809,7 @@ Content-Length: 135
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-29 19:21:28 +0900
+Last updated 2024-09-12 15:37:45 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

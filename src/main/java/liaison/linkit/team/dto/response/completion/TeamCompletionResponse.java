@@ -11,9 +11,6 @@ public class TeamCompletionResponse {
     // 팀 소개서 완성도 % = teamCompletion
     private final String teamCompletion;
 
-    // 4.4. 팀 프로필 희망 팀빌딩 분야
-    private final boolean isTeamProfileTeamBuildingField;
-
     // 4.5. 팀원 공고
     private final boolean isTeamMemberAnnouncement;
 
@@ -35,7 +32,6 @@ public class TeamCompletionResponse {
     public static TeamCompletionResponse teamProfileCompletion(final TeamProfile teamProfile) {
         return new TeamCompletionResponse(
                 String.format("%.1f", teamProfile.getTeamProfileCompletion()),
-                teamProfile.getIsTeamProfileTeamBuildingField(),
                 teamProfile.getIsTeamMemberAnnouncement(),
                 teamProfile.getIsActivity(),
                 teamProfile.getIsTeamIntroduction(),

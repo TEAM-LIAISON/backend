@@ -11,12 +11,9 @@ import liaison.linkit.member.domain.repository.memberBasicInform.MemberBasicInfo
 import liaison.linkit.profile.domain.Profile;
 import liaison.linkit.profile.domain.miniProfile.MiniProfile;
 import liaison.linkit.profile.domain.miniProfile.MiniProfileKeyword;
-import liaison.linkit.profile.domain.repository.profile.ProfileRepository;
-import liaison.linkit.profile.domain.repository.jobRole.ProfileJobRoleRepository;
 import liaison.linkit.profile.domain.repository.miniProfile.MiniProfileKeywordRepository;
 import liaison.linkit.profile.domain.repository.miniProfile.MiniProfileRepository;
-import liaison.linkit.profile.domain.role.JobRole;
-import liaison.linkit.profile.domain.role.ProfileJobRole;
+import liaison.linkit.profile.domain.repository.profile.ProfileRepository;
 import liaison.linkit.profile.dto.request.miniProfile.MiniProfileRequest;
 import liaison.linkit.profile.dto.response.miniProfile.MiniProfileResponse;
 import liaison.linkit.wish.domain.repository.privateWish.PrivateWishRepository;
@@ -41,7 +38,6 @@ public class MiniProfileService {
     private final MemberBasicInformRepository memberBasicInformRepository;
     private final MiniProfileRepository miniProfileRepository;
     private final MiniProfileKeywordRepository miniProfileKeywordRepository;
-    private final ProfileJobRoleRepository profileJobRoleRepository;
     private final S3Uploader s3Uploader;
     private final ApplicationEventPublisher publisher;
 
@@ -185,58 +181,25 @@ public class MiniProfileService {
         final List<MiniProfileKeyword> miniProfileKeywordList = getMiniProfileKeywords(miniProfile.getId());
         log.info("대상 객체의 미니 프로필 키워드 리스트를 조회하였습니다.");
 
-        // 이름 관련
+       // 이름 관련
         final MemberBasicInform memberBasicInform = getMemberBasicInform(memberId);
-        log.info("대상 객체의 회원 기본 정보를 조회하였습니다.");
-        // 직무, 역할 관련
-        final List<String> jobRoleNames = getJobRoleNames(memberId);
-        log.info("대상 객체의 희망 직무 및 역할을 조회하였습니다.");
 
-        return MiniProfileResponse.personalMiniProfile(miniProfile, miniProfileKeywordList, memberBasicInform.getMemberName(), jobRoleNames);
+        return MiniProfileResponse.personalMiniProfile(miniProfile, miniProfileKeywordList, memberBasicInform.getMemberName());
     }
 
     @Transactional(readOnly = true)
     public MiniProfileResponse getBrowsePersonalMiniProfile(final Long memberId, final Long profileId) {
-        final Profile profile = profileRepository.findById(profileId)
-                .orElseThrow(() -> new BadRequestException(NOT_FOUND_PROFILE_BY_ID));
-
-        // 미니 프로필 관련
+        final Profile profile = profileRepository.findById(profileId).orElseThrow(() -> new BadRequestException(NOT_FOUND_PROFILE_BY_ID));
         final MiniProfile miniProfile = getMiniProfile(profileId);
-        log.info("대상 객체의 미니 프로필 객체를 조회하였습니다.");
         final List<MiniProfileKeyword> miniProfileKeywordList = getMiniProfileKeywords(miniProfile.getId());
-        log.info("대상 객체의 미니 프로필 키워드 리스트를 조회하였습니다.");
-
-        // 이름 관련
         final MemberBasicInform memberBasicInform = getMemberBasicInform(profile.getMember().getId());
-        log.info("대상 객체의 회원 기본 정보를 조회하였습니다.");
-        // 직무, 역할 관련
-        final List<String> jobRoleNames = getJobRoleNames(profile.getMember().getId());
-        log.info("대상 객체의 희망 직무 및 역할을 조회하였습니다.");
-
         final boolean isPrivateSaved = privateWishRepository.findByMemberIdAndProfileId(memberId, miniProfile.getProfile().getId());
-
-        return MiniProfileResponse.personalBrowseMiniProfile(miniProfile, miniProfileKeywordList, memberBasicInform.getMemberName(), jobRoleNames, isPrivateSaved);
-    }
-
-    private List<ProfileJobRole> getProfileJobRoleList(final Long profileId) {
-        return profileJobRoleRepository.findAllByProfileId(profileId);
+        return MiniProfileResponse.personalBrowseMiniProfile(miniProfile, miniProfileKeywordList, memberBasicInform.getMemberName(), isPrivateSaved);
     }
 
     private List<MiniProfileKeyword> getMiniProfileKeywords(final Long miniProfileId) {
         return miniProfileKeywordRepository.findAllByMiniProfileId(miniProfileId);
     }
-
-
-    private boolean getSavedImageUrl(final Profile profile) {
-            final MiniProfile miniProfile = getMiniProfile(profile.getId());
-            if (miniProfile.getMiniProfileImg() != null) {
-                return true;
-            } else {
-                return false;
-            }
-    }
-
-    // 나중에 리팩토링 필요한 부분
 
     private String saveImage(final MultipartFile miniProfileImage) {
         // 이미지 유효성 검증
@@ -267,24 +230,6 @@ public class MiniProfileService {
         return memberBasicInform.getMemberName();
     }
 
-    public List<String> getJobRoleNames(final Long memberId) {
-        final Profile profile = getProfile(memberId);
-        final List<ProfileJobRole> profileJobRoleList = getProfileJobRoleList(profile.getId());
-
-        List<JobRole> jobRoleList = profileJobRoleList.stream()
-                .map(ProfileJobRole::getJobRole)
-                .toList();
-
-        return jobRoleList.stream()
-                .map(JobRole::getJobRoleName)
-                .toList();
-    }
-
-    public boolean getIsPrivateSaved(final Long memberId, final Long profileId) {
-        final MiniProfile miniProfile = getMiniProfile(profileId);
-        return privateWishRepository.findByMemberIdAndProfileId(memberId, miniProfile.getProfile().getId());
-    }
-
     // 미니 프로필의 유효성 검증이 끝난 후 수정한다.
     public void update(
             final Long memberId,
@@ -302,17 +247,8 @@ public class MiniProfileService {
             if (miniProfile.getMiniProfileImg() != null) {
                 s3Uploader.deleteImage(miniProfile.getMiniProfileImg());
             }
-            log.info("miniProfileImage != null case : 기존 미니프로필 이미지 삭제 완료");
 
             miniProfileKeywordRepository.deleteAllByMiniProfileId(miniProfile.getId());
-            log.info("miniProfileImage != null case : 기존 미니프로필 키워드 삭제 완료");
-
-//            miniProfileRepository.deleteByProfileId(profile.getId());
-//            profile.updateIsMiniProfile(false);
-//
-//            log.info("miniProfileImage != null case : 기존 미니프로필 객체 삭제 완료");
-
-            // 미니 프로필 이미지를 s3 저장 -> 해당 이미지 URL을 받아옴
             final String miniProfileImageUrl = saveImage(miniProfileImage);
 
             miniProfile.update(

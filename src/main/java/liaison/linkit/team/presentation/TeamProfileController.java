@@ -33,8 +33,6 @@ public class TeamProfileController {
     final TeamMiniProfileService teamMiniProfileService;
     // 4.3.
     final TeamCompletionService teamCompletionService;
-    // 4.4.
-    final TeamProfileTeamBuildingFieldService teamProfileTeamBuildingFieldService;
     // 4.5.
     final TeamMemberAnnouncementService teamMemberAnnouncementService;
     // 4.6.
@@ -59,7 +57,7 @@ public class TeamProfileController {
             final TeamProfileIsValueResponse teamProfileIsValueResponse = teamProfileService.getTeamProfileIsValue(accessor.getMemberId());
             log.info("teamProfileIsValueResponse={}", teamProfileIsValueResponse);
 
-            final boolean isTeamProfileEssential = (teamProfileIsValueResponse.isTeamMiniProfile() && teamProfileIsValueResponse.isActivity() && teamProfileIsValueResponse.isTeamProfileTeamBuildingField());
+            final boolean isTeamProfileEssential = (teamProfileIsValueResponse.isTeamMiniProfile() && teamProfileIsValueResponse.isActivity());
 
             log.info("isTeamProfileEssential={}", isTeamProfileEssential);
 
@@ -76,10 +74,6 @@ public class TeamProfileController {
             // 4.3. 프로필 완성도
             final TeamCompletionResponse teamCompletionResponse = getTeamCompletionResponse(accessor.getMemberId());
             log.info("teamCompletionResponse={}", teamCompletionResponse);
-
-            // 4.4. 희망 팀빌딩 분야
-            final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse = getTeamProfileTeamBuildingFieldResponse(accessor.getMemberId(), teamProfileIsValueResponse.isTeamProfileTeamBuildingField());
-            log.info("teamProfileTeamBuildingFieldResponse={}", teamProfileTeamBuildingFieldResponse);
 
             // 4.5. 팀원 공고
             final List<TeamMemberAnnouncementResponse> teamMemberAnnouncementResponse = getTeamMemberAnnouncement(accessor.getMemberId(), teamProfileIsValueResponse.isTeamMemberAnnouncement());
@@ -109,7 +103,6 @@ public class TeamProfileController {
                     isTeamProfileEssential,
                     teamMiniProfileResponse,
                     teamCompletionResponse,
-                    teamProfileTeamBuildingFieldResponse,
                     teamMemberAnnouncementResponse,
                     activityResponse,
                     teamProfileIntroductionResponse,
@@ -141,20 +134,6 @@ public class TeamProfileController {
             final Long memberId
     ) {
         return teamCompletionService.getTeamCompletion(memberId);
-    }
-
-    // 4.4. 희망 팀빌딩 분야
-    private TeamProfileTeamBuildingFieldResponse getTeamProfileTeamBuildingFieldResponse(
-            final Long memberId,
-            final boolean isTeamProfileTeamBuildingField
-    ) {
-        // true case
-        if (isTeamProfileTeamBuildingField) {
-            return teamProfileTeamBuildingFieldService.getAllTeamProfileTeamBuildingFields(memberId);
-        } else {
-            return new TeamProfileTeamBuildingFieldResponse();
-        }
-
     }
 
     // 4.5. 팀원 공고

@@ -6,7 +6,6 @@ import liaison.linkit.member.domain.Member;
 import liaison.linkit.member.domain.type.ProfileType;
 import liaison.linkit.profile.domain.awards.Awards;
 import liaison.linkit.profile.domain.miniProfile.MiniProfile;
-import liaison.linkit.profile.domain.role.ProfileJobRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,9 +44,6 @@ public class Profile extends BaseEntity {
     // 3.10. 수상
     @OneToMany(mappedBy = "profile", cascade = REMOVE)
     private List<Awards> awardsList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "profile", cascade = REMOVE)
-    private List<ProfileJobRole> profileJobRoleList = new ArrayList<>();
 
     // 3.3. 프로필 완성도
     // 전체 프로필 완성도 값 (%) - 소수점 가능 (double 자료형)
@@ -193,22 +189,6 @@ public class Profile extends BaseEntity {
         log.info("isProfileJobRole={}", isProfileJobRole);
         this.isProfileJobRole = isProfileJobRole;
 
-    }
-
-    // 3.5.2. 내 이력서 보유 기술
-    public void updateIsProfileSkill(final boolean isProfileSkill) {
-        log.info("isProfileSkill={}", isProfileSkill);
-        this.isProfileSkill = isProfileSkill;
-
-        // 모두 true인 경우
-        if (this.isJobAndSkill != (this.isProfileJobRole && isProfileSkill)) {
-            this.isJobAndSkill = !this.isJobAndSkill;
-            if(this.isJobAndSkill){
-                addPerfectionDefault();
-            } else {
-                cancelPerfectionDefault();
-            }
-        }
     }
 
     // 3.6. 희망 팀빌딩 분야 업데이트

@@ -7,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class TeamProfileOnBoardingIsValueResponse {
-    // 첫번째 페이지의 희망 팀빌딩 분야
-    private final boolean isTeamProfileTeamBuildingField;
 
     // 활동 방식 & 활동 지역 및 위치
     private final boolean isActivity;
@@ -20,7 +18,6 @@ public class TeamProfileOnBoardingIsValueResponse {
             final TeamProfile teamProfile
     ) {
         return new TeamProfileOnBoardingIsValueResponse(
-                teamProfile.getIsTeamProfileTeamBuildingField(),
                 teamProfile.getIsActivity(),
                 teamProfile.getIsTeamMiniProfile()
         );

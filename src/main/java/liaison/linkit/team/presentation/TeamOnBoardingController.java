@@ -4,21 +4,21 @@ import jakarta.validation.Valid;
 import liaison.linkit.auth.Auth;
 import liaison.linkit.auth.MemberOnly;
 import liaison.linkit.auth.domain.Accessor;
-import liaison.linkit.global.exception.BadRequestException;
 import liaison.linkit.team.dto.request.onBoarding.OnBoardingFieldTeamInformRequest;
 import liaison.linkit.team.dto.response.OnBoardingTeamProfileResponse;
 import liaison.linkit.team.dto.response.TeamProfileOnBoardingIsValueResponse;
 import liaison.linkit.team.dto.response.activity.ActivityResponse;
 import liaison.linkit.team.dto.response.miniProfile.TeamMiniProfileResponse;
 import liaison.linkit.team.dto.response.onBoarding.OnBoardingFieldTeamInformResponse;
-import liaison.linkit.team.service.*;
+import liaison.linkit.team.service.ActivityService;
+import liaison.linkit.team.service.TeamMiniProfileService;
+import liaison.linkit.team.service.TeamOnBoardingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static liaison.linkit.global.exception.ExceptionCode.HAVE_TO_INPUT_PRIVATE_ATTACH_URL;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -31,8 +31,6 @@ public class TeamOnBoardingController {
     final TeamOnBoardingService teamOnBoardingService;
     // 4.1.
     final TeamMiniProfileService teamMiniProfileService;
-    // 4.4.
-    final TeamProfileTeamBuildingFieldService teamProfileTeamBuildingFieldService;
     // 4.6.
     final ActivityService activityService;
 
@@ -43,17 +41,7 @@ public class TeamOnBoardingController {
             @Auth final Accessor accessor,
             @RequestBody @Valid final OnBoardingFieldTeamInformRequest onBoardingFieldTeamInformRequest
     ) {
-        if (onBoardingFieldTeamInformRequest.getTeamBuildingFieldNames().isEmpty()) {
-            throw new BadRequestException(HAVE_TO_INPUT_PRIVATE_ATTACH_URL);
-        }
-
-        // 일단 희망 팀빌딩 분야부터 처리
-        teamProfileTeamBuildingFieldService.saveTeamBuildingField(accessor.getMemberId(), onBoardingFieldTeamInformRequest.getTeamBuildingFieldNames());
-
-        // 미니 프로필에 있는 팀 제목, 규모, 분야 저장
-        // 온보딩 항목 저장
         teamMiniProfileService.saveOnBoarding(accessor.getMemberId(), onBoardingFieldTeamInformRequest);
-
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -77,7 +65,7 @@ public class TeamOnBoardingController {
             final TeamProfileOnBoardingIsValueResponse teamProfileOnBoardingIsValueResponse = teamOnBoardingService.getTeamProfileOnBoardingIsValue(accessor.getMemberId());
             log.info("teamProfileOnBoardingIsValueResponse={}",teamProfileOnBoardingIsValueResponse);
 
-            final OnBoardingFieldTeamInformResponse onBoardingFieldTeamInformResponse = getOnBoardingFieldTeamInformResponse(accessor.getMemberId(), teamProfileOnBoardingIsValueResponse.isTeamProfileTeamBuildingField(), teamProfileOnBoardingIsValueResponse.isTeamMiniProfile());
+            final OnBoardingFieldTeamInformResponse onBoardingFieldTeamInformResponse = getOnBoardingFieldTeamInformResponse(accessor.getMemberId(), teamProfileOnBoardingIsValueResponse.isTeamMiniProfile());
             log.info("onBoardingFieldTeamInformResponse={}",onBoardingFieldTeamInformResponse);
 
             final ActivityResponse activityResponse = getActivityResponse(accessor.getMemberId(), teamProfileOnBoardingIsValueResponse.isActivity());
@@ -112,15 +100,11 @@ public class TeamOnBoardingController {
 
     private OnBoardingFieldTeamInformResponse getOnBoardingFieldTeamInformResponse(
             final Long memberId,
-            final boolean isTeamProfileTeamBuildingField,
             final boolean isTeamMiniProfile
     ) {
-        if (isTeamProfileTeamBuildingField && isTeamMiniProfile) {
-            teamProfileTeamBuildingFieldService.validateTeamProfileTeamBuildingFieldByMember(memberId);
+        if (isTeamMiniProfile) {
             teamMiniProfileService.validateTeamMiniProfileByMember(memberId);
-
             return new OnBoardingFieldTeamInformResponse(
-                    teamProfileTeamBuildingFieldService.getAllTeamProfileTeamBuildingFields(memberId),
                     teamMiniProfileService.getTeamMiniProfileEarlyOnBoarding(memberId)
             );
         } else {

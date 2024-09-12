@@ -24,8 +24,6 @@ public class QProfileSkill extends EntityPathBase<ProfileSkill> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final liaison.linkit.profile.domain.QProfile profile;
-
     public final QSkill skill;
 
     public QProfileSkill(String variable) {
@@ -46,7 +44,6 @@ public class QProfileSkill extends EntityPathBase<ProfileSkill> {
 
     public QProfileSkill(Class<? extends ProfileSkill> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.profile = inits.isInitialized("profile") ? new liaison.linkit.profile.domain.QProfile(forProperty("profile"), inits.get("profile")) : null;
         this.skill = inits.isInitialized("skill") ? new QSkill(forProperty("skill")) : null;
     }
 

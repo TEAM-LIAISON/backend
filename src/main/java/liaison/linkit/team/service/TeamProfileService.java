@@ -5,14 +5,16 @@ import liaison.linkit.global.exception.BadRequestException;
 import liaison.linkit.team.domain.TeamProfile;
 import liaison.linkit.team.domain.repository.teamProfile.TeamProfileRepository;
 import liaison.linkit.team.dto.request.TeamIntroductionCreateRequest;
-import liaison.linkit.team.dto.response.*;
+import liaison.linkit.team.dto.response.TeamMemberIntroductionResponse;
+import liaison.linkit.team.dto.response.TeamProfileIntroductionResponse;
+import liaison.linkit.team.dto.response.TeamProfileIsValueResponse;
+import liaison.linkit.team.dto.response.TeamProfileResponse;
 import liaison.linkit.team.dto.response.activity.ActivityResponse;
 import liaison.linkit.team.dto.response.announcement.TeamMemberAnnouncementResponse;
 import liaison.linkit.team.dto.response.attach.TeamAttachResponse;
 import liaison.linkit.team.dto.response.completion.TeamCompletionResponse;
 import liaison.linkit.team.dto.response.history.HistoryResponse;
 import liaison.linkit.team.dto.response.miniProfile.TeamMiniProfileResponse;
-import liaison.linkit.team.dto.response.onBoarding.OnBoardingFieldTeamInformResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,23 +43,6 @@ public class TeamProfileService {
         }
     }
 
-    // 팀 소개서 온보딩 값 존재성 boolean 값들 전달
-    public TeamProfileOnBoardingIsValueResponse getTeamProfileOnBoardingIsValue(final Long memberId) {
-        return TeamProfileOnBoardingIsValueResponse.teamProfileOnBoardingIsValue(getTeamProfile(memberId));
-    }
-
-    public OnBoardingTeamProfileResponse getOnBoardingTeamProfile(
-            final OnBoardingFieldTeamInformResponse onBoardingFieldTeamInformResponse,
-            final ActivityResponse activityResponse,
-            final TeamMiniProfileResponse teamMiniProfileResponse
-    ) {
-        return OnBoardingTeamProfileResponse.onBoardingTeamProfileItems(
-                onBoardingFieldTeamInformResponse,
-                activityResponse,
-                teamMiniProfileResponse
-        );
-    }
-
     // 팀 소개 저장 메서드
     public void saveTeamIntroduction(
             final Long memberId,
@@ -84,7 +69,6 @@ public class TeamProfileService {
             final boolean isTeamProfileEssential,
             final TeamMiniProfileResponse teamMiniProfileResponse,
             final TeamCompletionResponse teamCompletionResponse,
-            final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse,
             final List<TeamMemberAnnouncementResponse> teamMemberAnnouncementResponse,
             final ActivityResponse activityResponse,
             final TeamProfileIntroductionResponse teamProfileIntroductionResponse,
@@ -96,7 +80,6 @@ public class TeamProfileService {
                 isTeamProfileEssential,
                 teamMiniProfileResponse,
                 teamCompletionResponse,
-                teamProfileTeamBuildingFieldResponse,
                 teamMemberAnnouncementResponse,
                 activityResponse,
                 teamProfileIntroductionResponse,

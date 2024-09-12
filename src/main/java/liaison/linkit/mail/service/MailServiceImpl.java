@@ -28,8 +28,8 @@ public class MailServiceImpl implements MailService {
 
     // 1. 내 이력서 -> 내 이력서 매칭 요청 보낸 경우
     @Override
-    public void mailRequestPrivateToPrivate(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderRole, final List<String> senderSkill, final LocalDateTime requestDate, final String requestMessage)  throws MessagingException {
-        final MimeMessage mimeMessage = createPrivateToPrivateMail(receiverEmail, receiverName, senderName, senderRole, senderSkill, requestDate, requestMessage);
+    public void mailRequestPrivateToPrivate(final String receiverEmail, final String receiverName, final String senderName, final LocalDateTime requestDate, final String requestMessage)  throws MessagingException {
+        final MimeMessage mimeMessage = createPrivateToPrivateMail(receiverEmail, receiverName, senderName, requestDate, requestMessage);
         try {
             emailSender.send(mimeMessage);
         } catch (Exception e) {
@@ -52,8 +52,8 @@ public class MailServiceImpl implements MailService {
 
     // 3. 내 이력서 -> 팀 소개서로 매칭 요청 보낸 경우
     @Override
-    public void mailRequestPrivateToTeam(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderRole, final List<String> senderSkill, final LocalDateTime requestDate, final String requestMessage)  throws MessagingException {
-        final MimeMessage mimeMessage = createPrivateToTeamMail(receiverEmail, receiverName, senderName, senderRole, senderSkill, requestDate, requestMessage);
+    public void mailRequestPrivateToTeam(final String receiverEmail, final String receiverName, final String senderName, final LocalDateTime requestDate, final String requestMessage)  throws MessagingException {
+        final MimeMessage mimeMessage = createPrivateToTeamMail(receiverEmail, receiverName, senderName, requestDate, requestMessage);
         try {
             emailSender.send(mimeMessage);
         } catch (Exception e) {
@@ -169,7 +169,7 @@ public class MailServiceImpl implements MailService {
     }
 
     // 1. 내 이력서 -> 내 이력서 매칭 요청 보낸 경우
-    private MimeMessage createPrivateToPrivateMail(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderRole, final List<String> senderSkill, final LocalDateTime requestDate, final String requestMessage) throws MessagingException {
+    private MimeMessage createPrivateToPrivateMail(final String receiverEmail, final String receiverName, final String senderName, final LocalDateTime requestDate, final String requestMessage) throws MessagingException {
         final MimeMessage mimeMessage = emailSender.createMimeMessage();
 
         mimeMessage.addRecipients(Message.RecipientType.TO, receiverEmail);
@@ -201,8 +201,8 @@ public class MailServiceImpl implements MailService {
                 senderName,
                 requestMessage,
                 senderName,
-                senderRole,
-                senderSkill,
+                "",
+                "",
                 senderName
         );
 
@@ -255,7 +255,7 @@ public class MailServiceImpl implements MailService {
     }
 
     // 3.
-    private MimeMessage createPrivateToTeamMail(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderRole, final List<String> senderSkill, final LocalDateTime requestDate, final String requestMessage) throws MessagingException {
+    private MimeMessage createPrivateToTeamMail(final String receiverEmail, final String receiverName, final String senderName, final LocalDateTime requestDate, final String requestMessage) throws MessagingException {
         final MimeMessage mimeMessage = emailSender.createMimeMessage();
 
         mimeMessage.addRecipients(Message.RecipientType.TO, receiverEmail);
@@ -287,8 +287,8 @@ public class MailServiceImpl implements MailService {
                 senderName,
                 requestMessage,
                 senderName,
-                senderRole,
-                senderSkill,
+                "",
+                "",
                 senderName
         );
         mimeMessage.setContent(msgg, "text/html; charset=utf-8");

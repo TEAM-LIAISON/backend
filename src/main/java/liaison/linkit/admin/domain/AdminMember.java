@@ -6,7 +6,7 @@ import liaison.linkit.member.domain.type.MemberState;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.SQLRestriction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -20,7 +20,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @NoArgsConstructor(access = PROTECTED)
 @SQLDelete(sql = "UPDATE admin_member SET status = 'DELETED' WHERE id = ?")
-@Where(clause = "status = 'ACTIVE'")
+@SQLRestriction("status = 'ACTIVE'")
 public class AdminMember {
     @Id
     @GeneratedValue(strategy = IDENTITY)

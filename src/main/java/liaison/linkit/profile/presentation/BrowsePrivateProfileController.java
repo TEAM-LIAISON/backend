@@ -13,9 +13,7 @@ import liaison.linkit.profile.dto.response.completion.CompletionResponse;
 import liaison.linkit.profile.dto.response.education.EducationResponse;
 import liaison.linkit.profile.dto.response.isValue.ProfileIsValueResponse;
 import liaison.linkit.profile.dto.response.miniProfile.MiniProfileResponse;
-import liaison.linkit.profile.dto.response.onBoarding.JobAndSkillResponse;
 import liaison.linkit.profile.dto.response.profileRegion.ProfileRegionResponse;
-import liaison.linkit.profile.dto.response.teamBuilding.ProfileTeamBuildingFieldResponse;
 import liaison.linkit.profile.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +37,6 @@ public class BrowsePrivateProfileController {
     public final ProfileService profileService;
     public final MiniProfileService miniProfileService;
     public final CompletionService completionService;
-    public final TeamBuildingFieldService teamBuildingFieldService;
     public final AntecedentsService antecedentsService;
     public final EducationService educationService;
     public final AwardsService awardsService;
@@ -81,12 +78,6 @@ public class BrowsePrivateProfileController {
             final ProfileIntroductionResponse profileIntroductionResponse = getProfileIntroduction(browseTargetPrivateProfileId, profileIsValueResponse.isIntroduction());
             log.info("profileIntroductionResponse={}", profileIntroductionResponse);
 
-            final JobAndSkillResponse jobAndSkillResponse = getJobAndSkillResponse(browseTargetPrivateProfileId, profileIsValueResponse.isJobAndSkill());
-            log.info("jobAndSkillResponse={}", jobAndSkillResponse);
-
-            final ProfileTeamBuildingFieldResponse profileTeamBuildingFieldResponse = getProfileTeamBuildingResponse(browseTargetPrivateProfileId, profileIsValueResponse.isProfileTeamBuildingField());
-            log.info("profileTeamBuildingFieldResponse={}", profileTeamBuildingFieldResponse);
-
             final ProfileRegionResponse profileRegionResponse = getProfileRegionResponse(browseTargetPrivateProfileId, profileIsValueResponse.isProfileRegion());
             log.info("profileRegionResponse={}", profileRegionResponse);
 
@@ -104,8 +95,6 @@ public class BrowsePrivateProfileController {
                     miniProfileResponse,
                     completionResponse,
                     profileIntroductionResponse,
-                    jobAndSkillResponse,
-                    profileTeamBuildingFieldResponse,
                     profileRegionResponse,
                     antecedentsResponses,
                     educationResponses,
@@ -166,31 +155,6 @@ public class BrowsePrivateProfileController {
         }
     }
 
-    private ProfileTeamBuildingFieldResponse getProfileTeamBuildingResponse(
-            final Long browseTargetPrivateProfileId,
-            final boolean isProfileTeamBuildingField
-    ) {
-        if (isProfileTeamBuildingField) {
-            teamBuildingFieldService.validateBrowseProfileTeamBuildingFieldByProfile(browseTargetPrivateProfileId);
-            return teamBuildingFieldService.getAllBrowseProfileTeamBuildingFields(browseTargetPrivateProfileId);
-        } else {
-            return new ProfileTeamBuildingFieldResponse();
-        }
-    }
-
-
-    // 보유 역량 및 기술 응답
-    private JobAndSkillResponse getJobAndSkillResponse(
-            final Long browseTargetPrivateProfileId,
-            final boolean isJobAndSkill
-    ) {
-        if (isJobAndSkill) {
-            return profileOnBoardingService.getBrowseJobAndSkill(browseTargetPrivateProfileId);
-        } else {
-            return new JobAndSkillResponse();
-        }
-    }
-
     private ProfileIntroductionResponse getProfileIntroduction(
             final Long browseTargetPrivateProfileId,
             final boolean isIntroduction
@@ -222,8 +186,7 @@ public class BrowsePrivateProfileController {
             return miniProfileService.getBrowsePersonalMiniProfile(memberId, browseTargetPrivateProfileId);
         } else {
             final String memberName = miniProfileService.getMemberName(browseTargetPrivateProfileId);
-            final List<String> jobRoleNames = miniProfileService.getJobRoleNames(browseTargetPrivateProfileId);
-            return new MiniProfileResponse(memberName, jobRoleNames);
+            return new MiniProfileResponse(memberName);
         }
     }
 }

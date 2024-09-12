@@ -2,7 +2,6 @@ package liaison.linkit.profile.service;
 
 import liaison.linkit.global.exception.AuthException;
 import liaison.linkit.global.exception.BadRequestException;
-import liaison.linkit.member.domain.Member;
 import liaison.linkit.member.domain.repository.member.MemberRepository;
 import liaison.linkit.profile.domain.Profile;
 import liaison.linkit.profile.domain.miniProfile.MiniProfile;
@@ -11,8 +10,6 @@ import liaison.linkit.profile.domain.repository.education.DegreeRepository;
 import liaison.linkit.profile.domain.repository.education.EducationRepository;
 import liaison.linkit.profile.domain.repository.miniProfile.MiniProfileRepository;
 import liaison.linkit.profile.domain.repository.profile.ProfileRepository;
-import liaison.linkit.profile.domain.repository.skill.ProfileSkillRepository;
-import liaison.linkit.profile.domain.repository.skill.SkillRepository;
 import liaison.linkit.profile.domain.repository.teambuilding.ProfileTeamBuildingFieldRepository;
 import liaison.linkit.profile.domain.repository.teambuilding.TeamBuildingFieldRepository;
 import liaison.linkit.profile.dto.response.ProfileIntroductionResponse;
@@ -23,9 +20,7 @@ import liaison.linkit.profile.dto.response.completion.CompletionResponse;
 import liaison.linkit.profile.dto.response.education.EducationResponse;
 import liaison.linkit.profile.dto.response.isValue.ProfileIsValueResponse;
 import liaison.linkit.profile.dto.response.miniProfile.MiniProfileResponse;
-import liaison.linkit.profile.dto.response.onBoarding.JobAndSkillResponse;
 import liaison.linkit.profile.dto.response.profileRegion.ProfileRegionResponse;
-import liaison.linkit.profile.dto.response.teamBuilding.ProfileTeamBuildingFieldResponse;
 import liaison.linkit.team.domain.TeamProfile;
 import liaison.linkit.team.domain.repository.teamProfile.TeamProfileRepository;
 import lombok.RequiredArgsConstructor;
@@ -47,26 +42,15 @@ public class BrowsePrivateProfileService {
     private final ProfileRepository profileRepository;
     private final TeamProfileRepository teamProfileRepository;
     private final MiniProfileRepository miniProfileRepository;
-    private final ProfileSkillRepository profileSkillRepository;
-    private final SkillRepository skillRepository;
     private final ProfileTeamBuildingFieldRepository profileTeamBuildingFieldRepository;
     private final TeamBuildingFieldRepository teamBuildingFieldRepository;
     private final AntecedentsRepository antecedentsRepository;
     private final EducationRepository educationRepository;
     private final DegreeRepository degreeRepository;
 
-    // 회원 조회
-    private Member getMember(final Long memberId) {
-        return memberRepository.findById(memberId)
-                .orElseThrow(() -> new BadRequestException(NOT_FOUND_MEMBER_BY_MEMBER_ID));
-    }
-
     // 미니 프로필로 해당 내 이력서의 유효성 판단
     public void validatePrivateProfileByMiniProfile(final Long miniProfileId) {
-
-        final MiniProfile miniProfile = miniProfileRepository.findById(miniProfileId)
-                .orElseThrow(() -> new BadRequestException(NOT_FOUND_MINI_PROFILE_BY_ID));
-        log.info("validatePrivateProfileByMiniProfile 내에서 미니 프로필 객체를 조회하였습니다.");
+        final MiniProfile miniProfile = miniProfileRepository.findById(miniProfileId).orElseThrow(() -> new BadRequestException(NOT_FOUND_MINI_PROFILE_BY_ID));
         if (!profileRepository.existsById(miniProfile.getProfile().getId())) {
             throw new AuthException(INVALID_MINI_PROFILE_WITH_MEMBER);
         }
@@ -103,8 +87,6 @@ public class BrowsePrivateProfileService {
             final MiniProfileResponse miniProfileResponse,
             final CompletionResponse completionResponse,
             final ProfileIntroductionResponse profileIntroductionResponse,
-            final JobAndSkillResponse jobAndSkillResponse,
-            final ProfileTeamBuildingFieldResponse profileTeamBuildingFieldResponse,
             final ProfileRegionResponse profileRegionResponse,
             final List<AntecedentsResponse> antecedentsResponses,
             final List<EducationResponse> educationResponses,
@@ -115,8 +97,6 @@ public class BrowsePrivateProfileService {
                 miniProfileResponse,
                 completionResponse,
                 profileIntroductionResponse,
-                jobAndSkillResponse,
-                profileTeamBuildingFieldResponse,
                 profileRegionResponse,
                 antecedentsResponses,
                 educationResponses,

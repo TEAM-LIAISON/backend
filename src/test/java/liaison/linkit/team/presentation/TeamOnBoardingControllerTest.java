@@ -7,7 +7,6 @@ import liaison.linkit.global.ControllerTest;
 import liaison.linkit.login.domain.MemberTokens;
 import liaison.linkit.team.dto.request.onBoarding.OnBoardingFieldTeamInformRequest;
 import liaison.linkit.team.dto.response.TeamProfileOnBoardingIsValueResponse;
-import liaison.linkit.team.dto.response.TeamProfileTeamBuildingFieldResponse;
 import liaison.linkit.team.dto.response.activity.ActivityMethodResponse;
 import liaison.linkit.team.dto.response.activity.ActivityRegionResponse;
 import liaison.linkit.team.dto.response.activity.ActivityResponse;
@@ -16,7 +15,6 @@ import liaison.linkit.team.dto.response.miniProfile.TeamMiniProfileResponse;
 import liaison.linkit.team.service.ActivityService;
 import liaison.linkit.team.service.TeamMiniProfileService;
 import liaison.linkit.team.service.TeamOnBoardingService;
-import liaison.linkit.team.service.TeamProfileTeamBuildingFieldService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -57,13 +55,10 @@ class TeamOnBoardingControllerTest extends ControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
-
     @MockBean
     private TeamOnBoardingService teamOnBoardingService;
     @MockBean
     private TeamMiniProfileService teamMiniProfileService;
-    @MockBean
-    private TeamProfileTeamBuildingFieldService teamProfileTeamBuildingFieldService;
     @MockBean
     private ActivityService activityService;
 
@@ -110,19 +105,12 @@ class TeamOnBoardingControllerTest extends ControllerTest {
         // given
         final TeamProfileOnBoardingIsValueResponse teamProfileOnBoardingIsValueResponse = new TeamProfileOnBoardingIsValueResponse(
                 true,
-                true,
                 true
         );
-
-        System.out.println("teamProfileOnBoardingIsValueResponse = " + teamProfileOnBoardingIsValueResponse);
 
         given(teamOnBoardingService.getTeamProfileOnBoardingIsValue(1L))
                 .willReturn(teamProfileOnBoardingIsValueResponse);
 
-        List<String> teamProfileTeamBuildingFieldNames = Arrays.asList("공모전", "대회", "창업");
-        final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse = new TeamProfileTeamBuildingFieldResponse(
-                teamProfileTeamBuildingFieldNames
-        );
 
         final TeamMiniProfileEarlyOnBoardingResponse teamMiniProfileEarlyOnBoardingResponse = new TeamMiniProfileEarlyOnBoardingResponse(
                 "리에종",
@@ -130,8 +118,6 @@ class TeamOnBoardingControllerTest extends ControllerTest {
                 "1-5인"
         );
 
-        given(teamProfileTeamBuildingFieldService.getAllTeamProfileTeamBuildingFields(1L))
-                .willReturn(teamProfileTeamBuildingFieldResponse);
         given(teamMiniProfileService.getTeamMiniProfileEarlyOnBoarding(1L))
                 .willReturn(teamMiniProfileEarlyOnBoardingResponse);
 
@@ -168,7 +154,7 @@ class TeamOnBoardingControllerTest extends ControllerTest {
         );
 
         given(teamMiniProfileService.getPersonalTeamMiniProfile(1L)).willReturn(teamMiniProfileResponse);
-        System.out.println("teamMiniProfileResponse = " + teamMiniProfileResponse);
+
         // when
         final ResultActions resultActions = performGetOnBoardingTeamProfileRequest();
 
@@ -187,7 +173,6 @@ class TeamOnBoardingControllerTest extends ControllerTest {
                                 ),
                                 responseFields(
                                         subsectionWithPath("onBoardingFieldTeamInformResponse").description("희망 팀빌딩 분야 항목과 미니 프로필 일부 정보").attributes(field("constraint", "객체")),
-                                        fieldWithPath("onBoardingFieldTeamInformResponse.teamBuildingFieldNames").description("희망 팀빌딩 분야 이름").attributes(field("constraint", "문자열(배열)")),
                                         fieldWithPath("onBoardingFieldTeamInformResponse.teamName").description("팀명").attributes(field("constraint", "문자열")),
                                         fieldWithPath("onBoardingFieldTeamInformResponse.sectorName").description("팀 분야").attributes(field("constraint", "문자열")),
                                         fieldWithPath("onBoardingFieldTeamInformResponse.sizeType").description("팀 규모").attributes(field("constraint", "문자열")),
@@ -214,10 +199,7 @@ class TeamOnBoardingControllerTest extends ControllerTest {
     @Test
     void postOnBoardingFieldTeamInform() throws Exception {
         // given
-        List<String> teamBuildingFieldNames = Arrays.asList("공모전", "대회");
-
         final OnBoardingFieldTeamInformRequest onBoardingFieldTeamInformRequest = new OnBoardingFieldTeamInformRequest(
-                teamBuildingFieldNames,
                 "리에종",
                 "1-5인",
                 "플랫폼"
@@ -240,10 +222,6 @@ class TeamOnBoardingControllerTest extends ControllerTest {
                                                 .attributes(field("constraint", "문자열(jwt)"))
                                 ),
                                 requestFields(
-                                        fieldWithPath("teamBuildingFieldNames")
-                                                .type(JsonFieldType.ARRAY)
-                                                .description("희망 팀빌딩 분야(7가지 항목)")
-                                                .attributes(field("constraint", "문자열의 배열")),
                                         fieldWithPath("teamName")
                                                 .type(JsonFieldType.STRING)
                                                 .description("팀이름")
@@ -267,7 +245,6 @@ class TeamOnBoardingControllerTest extends ControllerTest {
         // given
 
         final OnBoardingFieldTeamInformRequest onBoardingFieldTeamInformRequest = new OnBoardingFieldTeamInformRequest(
-                null,
                 "리에종",
                 "1-5인",
                 "플랫폼"
@@ -290,10 +267,6 @@ class TeamOnBoardingControllerTest extends ControllerTest {
                                                 .attributes(field("constraint", "문자열(jwt)"))
                                 ),
                                 requestFields(
-                                        fieldWithPath("teamBuildingFieldNames")
-                                                .type(JsonFieldType.NULL)
-                                                .description("희망 팀빌딩 분야(7가지 항목)")
-                                                .attributes(field("constraint", "문자열의 배열")),
                                         fieldWithPath("teamName")
                                                 .type(JsonFieldType.STRING)
                                                 .description("팀이름")

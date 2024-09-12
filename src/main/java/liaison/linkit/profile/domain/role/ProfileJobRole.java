@@ -1,7 +1,6 @@
 package liaison.linkit.profile.domain.role;
 
 import jakarta.persistence.*;
-import liaison.linkit.profile.domain.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +19,6 @@ public class ProfileJobRole {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "profile_job_role_id")
     private Long id;
-
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "job_role_id")

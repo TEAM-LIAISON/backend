@@ -9,22 +9,15 @@ import liaison.linkit.profile.domain.Profile;
 import liaison.linkit.profile.domain.miniProfile.MiniProfile;
 import liaison.linkit.profile.domain.miniProfile.MiniProfileKeyword;
 import liaison.linkit.profile.domain.repository.profile.ProfileRepository;
-import liaison.linkit.profile.domain.repository.jobRole.ProfileJobRoleRepository;
 import liaison.linkit.profile.domain.repository.miniProfile.MiniProfileKeywordRepository;
 import liaison.linkit.profile.domain.repository.miniProfile.MiniProfileRepository;
-import liaison.linkit.profile.domain.role.JobRole;
-import liaison.linkit.profile.domain.role.ProfileJobRole;
 import liaison.linkit.search.dto.response.browseAfterLogin.BrowseMiniProfileResponse;
 import liaison.linkit.team.domain.TeamProfile;
 import liaison.linkit.team.domain.announcement.TeamMemberAnnouncement;
-import liaison.linkit.team.domain.announcement.TeamMemberAnnouncementJobRole;
-import liaison.linkit.team.domain.announcement.TeamMemberAnnouncementSkill;
 import liaison.linkit.team.domain.miniprofile.TeamMiniProfile;
 import liaison.linkit.team.domain.miniprofile.TeamMiniProfileKeyword;
 import liaison.linkit.team.domain.repository.teamProfile.TeamProfileRepository;
-import liaison.linkit.team.domain.repository.announcement.TeamMemberAnnouncementJobRoleRepository;
 import liaison.linkit.team.domain.repository.announcement.TeamMemberAnnouncementRepository;
-import liaison.linkit.team.domain.repository.announcement.TeamMemberAnnouncementSkillRepository;
 import liaison.linkit.team.domain.repository.miniprofile.teamMiniProfileKeyword.TeamMiniProfileKeywordRepository;
 import liaison.linkit.team.domain.repository.miniprofile.TeamMiniProfileRepository;
 import liaison.linkit.team.dto.response.announcement.TeamMemberAnnouncementResponse;
@@ -58,14 +51,10 @@ public class WishService {
     private final PrivateWishRepository privateWishRepository;
     private final TeamWishRepository teamWishRepository;
     private final MemberBasicInformRepository memberBasicInformRepository;
-    private final ProfileJobRoleRepository profileJobRoleRepository;
     private final MiniProfileKeywordRepository miniProfileKeywordRepository;
     private final TeamMiniProfileKeywordRepository teamMiniProfileKeywordRepository;
     private final TeamProfileRepository teamProfileRepository;
-
     private final TeamMemberAnnouncementRepository teamMemberAnnouncementRepository;
-    private final TeamMemberAnnouncementJobRoleRepository teamMemberAnnouncementJobRoleRepository;
-    private final TeamMemberAnnouncementSkillRepository teamMemberAnnouncementSkillRepository;
 
     // 내 이력서 찜하기 최대 개수 판단 메서드
     public void validateMemberMaxPrivateWish(final Long memberId) {
@@ -207,8 +196,6 @@ public class WishService {
                     final List<MiniProfileKeyword> miniProfileKeywords = getMiniProfileKeywords(miniProfile.getId());
                     // 상대 회원의 기본 정보를 가져와야 한다.
                     final MemberBasicInform memberBasicInform = getMemberBasicInform(miniProfile.getProfile().getMember().getId());
-                    final List<String> jobRoleNames = getJobRoleNames(miniProfile.getProfile().getMember().getId());
-
                     // privateWish -> 찾아야함 (내가 이 해당 미니 프로필을 찜해뒀는지?)
                     final boolean isPrivateWish = privateWishRepository.findByMemberIdAndProfileId(memberId, miniProfile.getProfile().getId());
 
@@ -216,7 +203,6 @@ public class WishService {
                             miniProfile,
                             miniProfileKeywords,
                             memberBasicInform.getMemberName(),
-                            jobRoleNames,
                             isPrivateWish
                     );
                 })
@@ -244,15 +230,13 @@ public class WishService {
         final TeamMiniProfile teamMiniProfile = getTeamMiniProfileByTeamProfileId(teamMemberAnnouncement.getTeamProfile().getId());
         final List<TeamMiniProfileKeyword> teamMiniProfileKeyword = teamMiniProfileKeywordRepository.findAllByTeamMiniProfileId(teamMiniProfile.getId());
 
-        final TeamMemberAnnouncementJobRole teamMemberAnnouncementJobRole = getTeamMemberAnnouncementJobRole(teamMemberAnnouncement.getId());
-        final List<TeamMemberAnnouncementSkill> teamMemberAnnouncementSkillList = getTeamMemberAnnouncementSkills(teamMemberAnnouncement.getId());
         final String teamName = teamMemberAnnouncement.getTeamProfile().getTeamMiniProfile().getTeamName();
 
         final boolean isTeamSaved = teamWishRepository.findByTeamMemberAnnouncementIdAndMemberId(teamMemberAnnouncement.getId(), memberId);
 
         return new WishTeamProfileResponse(
                 TeamMiniProfileResponse.personalTeamMiniProfile(teamMiniProfile, teamMiniProfileKeyword),
-                TeamMemberAnnouncementResponse.afterLogin(teamMiniProfile.getTeamLogoImageUrl(), teamMemberAnnouncement, teamName, teamMemberAnnouncementJobRole, teamMemberAnnouncementSkillList, isTeamSaved)
+                TeamMemberAnnouncementResponse.afterLogin(teamMiniProfile.getTeamLogoImageUrl(), teamMemberAnnouncement, teamName, isTeamSaved)
         );
     }
 
@@ -262,32 +246,6 @@ public class WishService {
     private MemberBasicInform getMemberBasicInform(final Long memberId) {
         return memberBasicInformRepository.findByMemberId(memberId)
                 .orElseThrow(() -> new BadRequestException(NOT_FOUND_MEMBER_BASIC_INFORM_BY_MEMBER_ID));
-    }
-
-    public List<String> getJobRoleNames(final Long memberId) {
-        final Profile profile = getProfile(memberId);
-        final List<ProfileJobRole> profileJobRoleList = getProfileJobRoleList(profile.getId());
-
-        List<JobRole> jobRoleList = profileJobRoleList.stream()
-                .map(ProfileJobRole::getJobRole)
-                .toList();
-
-        return jobRoleList.stream()
-                .map(JobRole::getJobRoleName)
-                .toList();
-    }
-
-    private List<ProfileJobRole> getProfileJobRoleList(final Long profileId) {
-        return profileJobRoleRepository.findAllByProfileId(profileId);
-    }
-
-    private TeamMemberAnnouncementJobRole getTeamMemberAnnouncementJobRole(final Long teamMemberAnnouncementId) {
-        return teamMemberAnnouncementJobRoleRepository.findByTeamMemberAnnouncementId(teamMemberAnnouncementId)
-                .orElseThrow(() -> new BadRequestException(NOT_FOUND_TEAM_MEMBER_ANNOUNCEMENT_JOB_ROLE));
-    }
-
-    private List<TeamMemberAnnouncementSkill> getTeamMemberAnnouncementSkills(final Long teamMemberAnnouncementId) {
-        return teamMemberAnnouncementSkillRepository.findAllByTeamMemberAnnouncementId(teamMemberAnnouncementId);
     }
 
     private TeamMiniProfile getTeamMiniProfileByTeamProfileId(final Long teamProfileId) {

@@ -7,9 +7,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class ProfileOnBoardingIsValueResponse {
-    // 희망 팀빌딩 분야 항목
-    private final boolean isProfileTeamBuildingField;
-
     // 지역 및 위치 항목
     private final boolean isProfileRegion;
 
@@ -30,7 +27,6 @@ public class ProfileOnBoardingIsValueResponse {
             final Profile profile
     ) {
         return new ProfileOnBoardingIsValueResponse(
-                profile.getIsProfileTeamBuildingField(),
                 profile.getIsProfileSkill(),
                 profile.getIsProfileRegion(),
                 profile.getIsAntecedents(),

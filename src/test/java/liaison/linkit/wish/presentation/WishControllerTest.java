@@ -206,7 +206,6 @@ public class WishControllerTest extends ControllerTest {
                 true,
                 Arrays.asList("2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년"),
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 true
         );
 
@@ -217,7 +216,6 @@ public class WishControllerTest extends ControllerTest {
                 true,
                 Arrays.asList("2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년"),
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 true
         );
 
@@ -238,7 +236,6 @@ public class WishControllerTest extends ControllerTest {
                                 fieldWithPath("[].myKeywordNames").type(JsonFieldType.ARRAY).description("나를 소개하는 키워드 목록"),
                                 fieldWithPath("[].isActivate").type(JsonFieldType.BOOLEAN).description("미니 프로필 활성화 여부"),
                                 fieldWithPath("[].memberName").type(JsonFieldType.STRING).description("회원 이름"),
-                                fieldWithPath("[].jobRoleNames").type(JsonFieldType.ARRAY).description("직무 및 역할"),
                                 fieldWithPath("[].isPrivateSaved").type(JsonFieldType.BOOLEAN).description("찜 여부")
                         )
                 ));
@@ -274,9 +271,7 @@ public class WishControllerTest extends ControllerTest {
                 1L,
                 "https://image.linkit.im/images/linkit_logo.png",
                 "리에종",
-                "개발·데이터",
                 "주요 업무입니다.",
-                Arrays.asList("서버 개발", "DevOps"),
                 "지원 절차입니다.",
                 true
         );
@@ -285,9 +280,7 @@ public class WishControllerTest extends ControllerTest {
                 2L,
                 "https://image.linkit.im/images/linkit_logo.png",
                 "팀명팀명",
-                "디자인",
                 "주요 업무입니다. (두번째 팀원 공고)",
-                Arrays.asList("웹 디자인", "앱 디자인"),
                 "지원 절차입니다. (두번째 팀원 공고)",
                 true
         );
@@ -317,9 +310,7 @@ public class WishControllerTest extends ControllerTest {
                                 fieldWithPath("[].teamMemberAnnouncementResponse.id").type(JsonFieldType.NUMBER).description("팀원 공고 ID"),
                                 fieldWithPath("[].teamMemberAnnouncementResponse.teamLogoImageUrl").type(JsonFieldType.STRING).description("팀 로고 이미지 경로"),
                                 fieldWithPath("[].teamMemberAnnouncementResponse.teamName").type(JsonFieldType.STRING).description("공고에 대한 팀 이름"),
-                                fieldWithPath("[].teamMemberAnnouncementResponse.jobRoleName").type(JsonFieldType.STRING).description("직무 이름"),
                                 fieldWithPath("[].teamMemberAnnouncementResponse.mainBusiness").type(JsonFieldType.STRING).description("주요 업무 내용"),
-                                fieldWithPath("[].teamMemberAnnouncementResponse.skillNames").type(JsonFieldType.ARRAY).description("필요 기술 목록"),
                                 fieldWithPath("[].teamMemberAnnouncementResponse.applicationProcess").type(JsonFieldType.STRING).description("지원 절차 설명"),
                                 fieldWithPath("[].teamMemberAnnouncementResponse.isTeamSaved").type(JsonFieldType.BOOLEAN).description("팀 찜 여부")
                         )

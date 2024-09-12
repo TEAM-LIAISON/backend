@@ -26,8 +26,6 @@ public class QProfileJobRole extends EntityPathBase<ProfileJobRole> {
 
     public final QJobRole jobRole;
 
-    public final liaison.linkit.profile.domain.QProfile profile;
-
     public QProfileJobRole(String variable) {
         this(ProfileJobRole.class, forVariable(variable), INITS);
     }
@@ -47,7 +45,6 @@ public class QProfileJobRole extends EntityPathBase<ProfileJobRole> {
     public QProfileJobRole(Class<? extends ProfileJobRole> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.jobRole = inits.isInitialized("jobRole") ? new QJobRole(forProperty("jobRole")) : null;
-        this.profile = inits.isInitialized("profile") ? new liaison.linkit.profile.domain.QProfile(forProperty("profile"), inits.get("profile")) : null;
     }
 
 }

@@ -11,12 +11,6 @@ public class ProfileIsValueResponse {
     // 자기소개 항목
     private final boolean isIntroduction;
 
-    // 기술 항목
-    private final boolean isJobAndSkill;
-
-    // 희망 팀빌딩 분야 항목
-    private final boolean isProfileTeamBuildingField;
-
     // 지역 및 위치 항목
     private final boolean isProfileRegion;
 
@@ -38,8 +32,6 @@ public class ProfileIsValueResponse {
     public static ProfileIsValueResponse profileIsValue(final Profile profile) {
         return new ProfileIsValueResponse(
                 profile.getIsIntroduction(),
-                profile.getIsJobAndSkill(),
-                profile.getIsProfileTeamBuildingField(),
                 profile.getIsProfileRegion(),
                 profile.getIsAntecedents(),
                 profile.getIsEducation(),

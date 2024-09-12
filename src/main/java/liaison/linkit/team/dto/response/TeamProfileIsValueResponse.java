@@ -10,10 +10,6 @@ public class TeamProfileIsValueResponse {
 
     // 4.1. 미니 프로필
     private final boolean isTeamMiniProfile;
-
-    // 4.4. 팀 프로필 희망 팀빌딩 분야
-    private final boolean isTeamProfileTeamBuildingField;
-
     // 4.5. 팀원 공고
     private final boolean isTeamMemberAnnouncement;
 
@@ -37,7 +33,6 @@ public class TeamProfileIsValueResponse {
     ) {
         return new TeamProfileIsValueResponse(
                 teamProfile.getIsTeamMiniProfile(),
-                teamProfile.getIsTeamProfileTeamBuildingField(),
                 teamProfile.getIsTeamMemberAnnouncement(),
                 teamProfile.getIsActivity(),
                 teamProfile.getIsTeamIntroduction(),

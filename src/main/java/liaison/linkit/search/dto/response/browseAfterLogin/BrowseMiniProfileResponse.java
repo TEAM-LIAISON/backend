@@ -18,25 +18,12 @@ public class BrowseMiniProfileResponse {
     private final Boolean isActivate;
     private final List<String> myKeywordNames;
     private final String memberName;
-    private final List<String> jobRoleNames;
     private final Boolean isPrivateSaved;
-
-    public BrowseMiniProfileResponse(final String memberName, final List<String> jobRoleNames, final Boolean isPrivateSaved) {
-        this.id = null;
-        this.profileTitle = null;
-        this.miniProfileImg = null;
-        this.isActivate = null;
-        this.myKeywordNames = null;
-        this.memberName = memberName;
-        this.jobRoleNames = jobRoleNames;
-        this.isPrivateSaved = false;
-    }
 
     public static BrowseMiniProfileResponse personalBrowseMiniProfile(
             final MiniProfile miniProfile,
             final List<MiniProfileKeyword> miniProfileKeywords,
             final String memberName,
-            final List<String> jobRoleNames,
             final Boolean isPrivateSaved
     ) {
         List<String> myKeywordNames = miniProfileKeywords.stream()
@@ -50,7 +37,6 @@ public class BrowseMiniProfileResponse {
                 miniProfile.isActivate(),
                 myKeywordNames,
                 memberName,
-                jobRoleNames,
                 isPrivateSaved
         );
     }

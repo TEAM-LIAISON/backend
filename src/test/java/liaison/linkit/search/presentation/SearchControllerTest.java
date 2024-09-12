@@ -75,28 +75,6 @@ public class SearchControllerTest extends ControllerTest {
         MockHttpServletRequestBuilder requestBuilder = get("/search/team/profile")
                 .contentType(APPLICATION_JSON);
 
-        // 쿼리 파라미터를 조건적으로 추가합니다.
-        // 각 파라미터 값이 null인 경우 해당 파라미터를 추가하지 않습니다.
-//        requestBuilder.queryParam("page", "0"); // 페이지네이션 설정 예시
-//        requestBuilder.queryParam("size", "10"); // 페이지네이션 설정 예시
-
-        // 필터링 파라미터가 null이 아니면 해당 파라미터를 추가합니다.
-        // 다음과 같은 방식으로 모든 필터링 파라미터를 처리합니다.
-        List<String> teamBuildingFieldNames = null; // 예를 들어, null로 설정
-        if (teamBuildingFieldNames != null) {
-            teamBuildingFieldNames.forEach(name -> requestBuilder.queryParam("teamBuildingFieldName", name));
-        }
-
-        String jobRoleName = null; // null로 예시 설정
-        if (jobRoleName != null) {
-            requestBuilder.queryParam("jobRoleName", jobRoleName);
-        }
-
-        String skillName = null; // null로 예시 설정
-        if (skillName != null) {
-            requestBuilder.queryParam("skillName", skillName);
-        }
-
         String cityName = null; // null로 예시 설정
         if (cityName != null) {
             requestBuilder.queryParam("cityName", cityName);
@@ -121,21 +99,6 @@ public class SearchControllerTest extends ControllerTest {
                 .header(AUTHORIZATION, MEMBER_TOKENS.getAccessToken())
                 .cookie(COOKIE)
                 .contentType(APPLICATION_JSON);
-
-        List<String> teamBuildingFieldNames = null; // 예를 들어, null로 설정
-        if (teamBuildingFieldNames != null) {
-            teamBuildingFieldNames.forEach(name -> requestBuilder.queryParam("teamBuildingFieldName", name));
-        }
-
-        String jobRoleName = null; // null로 예시 설정
-        if (jobRoleName != null) {
-            requestBuilder.queryParam("jobRoleName", jobRoleName);
-        }
-
-        String skillName = null; // null로 예시 설정
-        if (skillName != null) {
-            requestBuilder.queryParam("skillName", skillName);
-        }
 
         String cityName = null; // null로 예시 설정
         if (cityName != null) {
@@ -174,9 +137,7 @@ public class SearchControllerTest extends ControllerTest {
                 1L,
                 "https://image.linkit.im/images/linkit_logo.png",
                 "리에종",
-                "개발·데이터",
                 "주요 업무입니다.",
-                Arrays.asList("서버 개발", "DevOps"),
                 "지원 절차입니다.",
                 false
         );
@@ -191,9 +152,6 @@ public class SearchControllerTest extends ControllerTest {
                 any(),
                 eq(null),
                 eq(null),
-                eq(null),
-                eq(null),
-                eq(null),
                 eq(null)
         )).thenReturn(page);
 
@@ -205,11 +163,6 @@ public class SearchControllerTest extends ControllerTest {
                 .andDo(
                         restDocs.document(
                                 queryParameters(
-//                                        parameterWithName("page").description("페이지 번호"),
-//                                        parameterWithName("size").description("페이지당 항목 수"),
-                                        parameterWithName("teamBuildingFieldName").description("희망 팀빌딩 분야 필터").optional(),
-                                        parameterWithName("jobRoleName").description("직무/역할 필터").optional(),
-                                        parameterWithName("skillName").description("보유 역량 필터").optional(),
                                         parameterWithName("cityName").description("지역 (시/도) 필터").optional(),
                                         parameterWithName("divisionName").description("지역 (시/군/구) 필터").optional(),
                                         parameterWithName("activityTagName").description("활동 방식 필터").optional()
@@ -228,9 +181,7 @@ public class SearchControllerTest extends ControllerTest {
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.id").description("팀원 공고 ID"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.teamLogoImageUrl").description("팀 로고 이미지 경로"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.teamName").description("팀 이름"),
-                                        fieldWithPath("content[].teamMemberAnnouncementResponse.jobRoleName").description("팀원 공고 직무 이름"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.mainBusiness").description("주요 업무"),
-                                        fieldWithPath("content[].teamMemberAnnouncementResponse.skillNames").description("요구되는 기술 목록"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.applicationProcess").description("지원 절차"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.isTeamSaved").description("팀원 공고 찜하기 여부"),
 
@@ -270,9 +221,7 @@ public class SearchControllerTest extends ControllerTest {
                 1L,
                 "https://image.linkit.im/images/linkit_logo.png",
                 "리에종",
-                "개발·데이터",
                 "주요 업무입니다.",
-                Arrays.asList("서버 개발", "DevOps"),
                 "지원 절차입니다.",
                 true
         );
@@ -286,9 +235,6 @@ public class SearchControllerTest extends ControllerTest {
         when(searchService.findTeamMemberAnnouncementsWithTeamMiniProfileAfterLogin(
                 anyLong(),
                 any(),
-                eq(null),
-                eq(null),
-                eq(null),
                 eq(null),
                 eq(null),
                 eq(null)
@@ -311,9 +257,6 @@ public class SearchControllerTest extends ControllerTest {
                                                 .attributes(field("constraint", "문자열(jwt)"))
                                 ),
                                 queryParameters(
-                                        parameterWithName("teamBuildingFieldName").description("희망 팀빌딩 분야 필터").optional(),
-                                        parameterWithName("jobRoleName").description("직무/역할 필터").optional(),
-                                        parameterWithName("skillName").description("보유 역량 필터").optional(),
                                         parameterWithName("cityName").description("지역 (시/도) 필터").optional(),
                                         parameterWithName("divisionName").description("지역 (시/군/구) 필터").optional(),
                                         parameterWithName("activityTagName").description("활동 방식 필터").optional()
@@ -331,9 +274,7 @@ public class SearchControllerTest extends ControllerTest {
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.id").description("팀원 공고 ID"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.teamLogoImageUrl").description("팀 로고 이미지 경로"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.teamName").description("팀 이름"),
-                                        fieldWithPath("content[].teamMemberAnnouncementResponse.jobRoleName").description("팀원 공고 직무 이름"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.mainBusiness").description("주요 업무"),
-                                        fieldWithPath("content[].teamMemberAnnouncementResponse.skillNames").description("요구되는 기술 목록"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.applicationProcess").description("지원 절차"),
                                         fieldWithPath("content[].teamMemberAnnouncementResponse.isTeamSaved").type(JsonFieldType.BOOLEAN).description("로그인 사용자가 해당 팀원 공고 찜한 여부"),
 
@@ -361,21 +302,6 @@ public class SearchControllerTest extends ControllerTest {
          MockHttpServletRequestBuilder requestBuilder = get("/search/private/profile")
                         .contentType(APPLICATION_JSON);
 
-        List<String> teamBuildingFieldNames = null; // 예를 들어, null로 설정
-        if (teamBuildingFieldNames != null) {
-            teamBuildingFieldNames.forEach(name -> requestBuilder.queryParam("teamBuildingFieldName", name));
-        }
-
-        String jobRoleName = null; // null로 예시 설정
-        if (jobRoleName != null) {
-            requestBuilder.queryParam("jobRoleName", jobRoleName);
-        }
-
-        String skillName = null; // null로 예시 설정
-        if (skillName != null) {
-            requestBuilder.queryParam("skillName", skillName);
-        }
-
         String cityName = null; // null로 예시 설정
         if (cityName != null) {
             requestBuilder.queryParam("cityName", cityName);
@@ -395,21 +321,6 @@ public class SearchControllerTest extends ControllerTest {
                 .header(AUTHORIZATION, MEMBER_TOKENS.getAccessToken())
                 .cookie(COOKIE)
                 .contentType(APPLICATION_JSON);
-
-        List<String> teamBuildingFieldNames = null; // 예를 들어, null로 설정
-        if (teamBuildingFieldNames != null) {
-            teamBuildingFieldNames.forEach(name -> requestBuilder.queryParam("teamBuildingFieldName", name));
-        }
-
-        String jobRoleName = null; // null로 예시 설정
-        if (jobRoleName != null) {
-            requestBuilder.queryParam("jobRoleName", jobRoleName);
-        }
-
-        String skillName = null; // null로 예시 설정
-        if (skillName != null) {
-            requestBuilder.queryParam("skillName", skillName);
-        }
 
         String cityName = null; // null로 예시 설정
         if (cityName != null) {
@@ -437,16 +348,12 @@ public class SearchControllerTest extends ControllerTest {
                 true,
                 Arrays.asList("2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년"),
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 false
         );
 
         Page<MiniProfileResponse> page = new PageImpl<>(Collections.singletonList(miniProfileResponse));
         when(searchService.findPrivateMiniProfile(
                 any(),
-                eq(null),
-                eq(null),
-                eq(null),
                 eq(null),
                 eq(null)
         )).thenReturn(page);
@@ -459,11 +366,6 @@ public class SearchControllerTest extends ControllerTest {
                 .andDo(
                         restDocs.document(
                                 queryParameters(
-//                                        parameterWithName("page").description("페이지 번호"),
-//                                        parameterWithName("size").description("페이지당 항목 수"),
-                                        parameterWithName("teamBuildingFieldName").description("희망 팀빌딩 분야 필터").optional(),
-                                        parameterWithName("jobRoleName").description("직무/역할 필터").optional(),
-                                        parameterWithName("skillName").description("보유 역량 필터").optional(),
                                         parameterWithName("cityName").description("지역 (시/도) 필터").optional(),
                                         parameterWithName("divisionName").description("지역 (시/군/구) 필터").optional()
                                 ),
@@ -474,7 +376,6 @@ public class SearchControllerTest extends ControllerTest {
                                         fieldWithPath("content[].isActivate").description("프로필 활성화 여부"),
                                         fieldWithPath("content[].myKeywordNames").description("키워드 목록"),
                                         fieldWithPath("content[].memberName").description("회원 이름"),
-                                        fieldWithPath("content[].jobRoleNames").type(JsonFieldType.ARRAY).description("직무 및 역할 이름 배열"),
                                         fieldWithPath("content[].isPrivateSaved").type(JsonFieldType.BOOLEAN).description("찜하기 여부"),
 
                                         fieldWithPath("pageable").description("페이징 처리 객체"),
@@ -506,7 +407,6 @@ public class SearchControllerTest extends ControllerTest {
                 true,
                 Arrays.asList("2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년"),
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 true
         );
 
@@ -514,9 +414,6 @@ public class SearchControllerTest extends ControllerTest {
         when(searchService.findPrivateMiniProfileLogin(
                 anyLong(),
                 any(),
-                eq(null),
-                eq(null),
-                eq(null),
                 eq(null),
                 eq(null)
         )).thenReturn(page);
@@ -538,9 +435,6 @@ public class SearchControllerTest extends ControllerTest {
                                                 .attributes(field("constraint", "문자열(jwt)"))
                                 ),
                                 queryParameters(
-                                        parameterWithName("teamBuildingFieldName").description("희망 팀빌딩 분야 필터").optional(),
-                                        parameterWithName("jobRoleName").description("직무/역할 필터").optional(),
-                                        parameterWithName("skillName").description("보유 역량 필터").optional(),
                                         parameterWithName("cityName").description("지역 (시/도) 필터").optional(),
                                         parameterWithName("divisionName").description("지역 (시/군/구) 필터").optional()
                                 ),
@@ -551,7 +445,6 @@ public class SearchControllerTest extends ControllerTest {
                                         fieldWithPath("content[].isActivate").description("프로필 활성화 여부"),
                                         fieldWithPath("content[].myKeywordNames").description("키워드 목록"),
                                         fieldWithPath("content[].memberName").description("회원 이름"),
-                                        fieldWithPath("content[].jobRoleNames").type(JsonFieldType.ARRAY).description("직무 및 역할 이름 배열"),
                                         fieldWithPath("content[].isPrivateSaved").type(JsonFieldType.BOOLEAN).description("로그인 사용자가 해당 프로필 찜한 여부"),
 
                                         fieldWithPath("pageable").description("페이징 처리 객체"),
@@ -570,48 +463,4 @@ public class SearchControllerTest extends ControllerTest {
                         )
                 );
     }
-
-//    private ResultActions performFindPrivateMiniProfileRequest() throws Exception {
-//        MockHttpServletRequestBuilder requestBuilder = get("/search/private/profile").contentType(APPLICATION_JSON);
-//
-//        // 마지막 인덱스 PK
-//        Long lastIndex = null;
-//        // 마지막 인덱스 PK가 null이 아닌 경우에만 쿼리 파라미터를 추가합니다.
-//        if (lastIndex != null) {
-//            requestBuilder.queryParam("lastIndex", String.valueOf(lastIndex));
-//        }
-//
-//        // 희망 팀빌딩 분야
-//        List<String> teamBuildingFieldNames = null; // 예를 들어, null로 설정
-//        if (teamBuildingFieldNames != null) {
-//            teamBuildingFieldNames.forEach(name -> requestBuilder.queryParam("teamBuildingFieldName", name));
-//        }
-//
-//        // 희망 역할
-//        String jobRoleName = null; // null로 예시 설정
-//        if (jobRoleName != null) {
-//            requestBuilder.queryParam("jobRoleName", jobRoleName);
-//        }
-//
-//        // 보유 역량
-//        String skillName = null; // null로 예시 설정
-//        if (skillName != null) {
-//            requestBuilder.queryParam("skillName", skillName);
-//        }
-//
-//        // 시군구 (시군)
-//        String cityName = null; // null로 예시 설정
-//        if (cityName != null) {
-//            requestBuilder.queryParam("cityName", cityName);
-//        }
-//
-//        // (시도)
-//        String divisionName = null; // null로 예시 설정
-//        if (divisionName != null) {
-//            requestBuilder.queryParam("divisionName", divisionName);
-//        }
-//
-//
-//    }
-
 }

@@ -14,9 +14,7 @@ import liaison.linkit.profile.dto.response.completion.CompletionResponse;
 import liaison.linkit.profile.dto.response.education.EducationResponse;
 import liaison.linkit.profile.dto.response.isValue.ProfileIsValueResponse;
 import liaison.linkit.profile.dto.response.miniProfile.MiniProfileResponse;
-import liaison.linkit.profile.dto.response.onBoarding.JobAndSkillResponse;
 import liaison.linkit.profile.dto.response.profileRegion.ProfileRegionResponse;
-import liaison.linkit.profile.dto.response.teamBuilding.ProfileTeamBuildingFieldResponse;
 import liaison.linkit.profile.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +36,6 @@ public class ProfileController {
     public final ProfileService profileService;
     public final MiniProfileService miniProfileService;
     public final CompletionService completionService;
-    public final ProfileSkillService profileSkillService;
-    public final TeamBuildingFieldService teamBuildingFieldService;
     public final AntecedentsService antecedentsService;
     public final EducationService educationService;
     public final AwardsService awardsService;
@@ -67,10 +63,8 @@ public class ProfileController {
             profileService.validateProfileByMember(accessor.getMemberId());
 
             final ProfileIsValueResponse profileIsValueResponse = profileService.getProfileIsValue(accessor.getMemberId());
-            log.info("profileIsValueResponse={}", profileIsValueResponse);
 
-            final boolean isPrivateProfileEssential = (profileIsValueResponse.isProfileTeamBuildingField() && profileIsValueResponse.isProfileRegion() && profileIsValueResponse.isMiniProfile() && profileIsValueResponse.isJobAndSkill());
-            log.info("isPrivateProfileEssential={}", isPrivateProfileEssential);
+            final boolean isPrivateProfileEssential = (profileIsValueResponse.isProfileRegion() && profileIsValueResponse.isMiniProfile());
 
             if (!isPrivateProfileEssential) {
                 log.info("필수 내 이력서 항목이 존재하지 않습니다.");
@@ -82,8 +76,6 @@ public class ProfileController {
 
             final CompletionResponse completionResponse = getCompletionResponse(accessor.getMemberId());
             final ProfileIntroductionResponse profileIntroductionResponse = getProfileIntroduction(accessor.getMemberId(), profileIsValueResponse.isIntroduction());
-            final JobAndSkillResponse jobAndSkillResponse = getJobAndSkillResponse(accessor.getMemberId(), profileIsValueResponse.isJobAndSkill());
-            final ProfileTeamBuildingFieldResponse profileTeamBuildingFieldResponse = getProfileTeamBuildingResponse(accessor.getMemberId(), profileIsValueResponse.isProfileTeamBuildingField());
             final ProfileRegionResponse profileRegionResponse = getProfileRegionResponse(accessor.getMemberId(), profileIsValueResponse.isProfileRegion());
             final List<AntecedentsResponse> antecedentsResponses = getAntecedentsResponses(accessor.getMemberId(), profileIsValueResponse.isAntecedents());
             final List<EducationResponse> educationResponses = getEducationResponses(accessor.getMemberId(), profileIsValueResponse.isEducation());
@@ -94,8 +86,6 @@ public class ProfileController {
                     miniProfileResponse,
                     completionResponse,
                     profileIntroductionResponse,
-                    jobAndSkillResponse,
-                    profileTeamBuildingFieldResponse,
                     profileRegionResponse,
                     antecedentsResponses,
                     educationResponses,
@@ -119,8 +109,7 @@ public class ProfileController {
             return miniProfileService.getPersonalMiniProfile(memberId);
         } else {
             final String memberName = miniProfileService.getMemberName(memberId);
-            final List<String> jobRoleNames = miniProfileService.getJobRoleNames(memberId);
-            return new MiniProfileResponse(memberName, jobRoleNames);
+            return new MiniProfileResponse(memberName);
         }
     }
 
@@ -141,18 +130,6 @@ public class ProfileController {
         }
     }
 
-    private ProfileTeamBuildingFieldResponse getProfileTeamBuildingResponse(
-            final Long memberId,
-            final boolean isProfileTeamBuildingField
-    ) {
-        if (isProfileTeamBuildingField) {
-            teamBuildingFieldService.validateProfileTeamBuildingFieldByMember(memberId);
-            return teamBuildingFieldService.getAllProfileTeamBuildingFields(memberId);
-        } else {
-            return new ProfileTeamBuildingFieldResponse();
-        }
-    }
-
     private ProfileRegionResponse getProfileRegionResponse(
             final Long memberId,
             final boolean isProfileRegion
@@ -162,19 +139,6 @@ public class ProfileController {
             return profileRegionService.getPersonalProfileRegion(memberId);
         } else {
             return null;
-        }
-    }
-
-    // 1.5.4. 역할 및 보유 기술 조회
-    private JobAndSkillResponse getJobAndSkillResponse(
-            final Long memberId,
-            final boolean isJobAndSkill
-    ) {
-        if (isJobAndSkill) {
-            profileOnBoardingService.validateProfileByMember(memberId);
-            return profileOnBoardingService.getJobAndSkill(memberId);
-        } else {
-            return new JobAndSkillResponse();
         }
     }
 

@@ -18,12 +18,7 @@ public interface MiniProfileRepositoryCustom {
     Slice<MiniProfile> searchAll(
             Long lastIndex,
             Pageable pageable,
-            List<String> teamBuildingFieldName,
-            List<String> jobRoleName,
-            List<String> skillName,
             String cityName,
             String divisionName
     );
-
-//    Page<MiniProfile> findAll(final List<String> teamBuildingFieldName, final Long teamBuildingFieldCount, final List<String> jobRoleName, final Long jobRoleCount, final List<String> skillName, final Long skillCount, final String cityName, final String divisionName, final Pageable pageable);
 }

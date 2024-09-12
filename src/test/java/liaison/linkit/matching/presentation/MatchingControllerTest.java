@@ -785,7 +785,6 @@ class MatchingControllerTest extends ControllerTest {
         final ReceivedPrivateMatchingMessageResponse receivedPrivateMatchingMessageResponse = new ReceivedPrivateMatchingMessageResponse(
                 1L,
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 "권동민님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
                 false
         );
@@ -805,7 +804,6 @@ class MatchingControllerTest extends ControllerTest {
                         responseFields(
                                 fieldWithPath("receivedMatchingId").type(JsonFieldType.NUMBER).description("내 이력서/팀 소개서에 매칭 PK ID"),
                                 fieldWithPath("senderName").type(JsonFieldType.STRING).description("발신자 이름"),
-                                fieldWithPath("jobRoleNames").type(JsonFieldType.ARRAY).description("발신자의 희망 역할 및 직무"),
                                 fieldWithPath("requestMessage").type(JsonFieldType.STRING).description("매칭 요청 메시지"),
                                 fieldWithPath("receivedTeamProfile").type(JsonFieldType.BOOLEAN).description("이력/소개서 수신 여부")
                         )
@@ -819,7 +817,6 @@ class MatchingControllerTest extends ControllerTest {
         final ReceivedPrivateMatchingMessageResponse receivedPrivateMatchingMessageResponse = new ReceivedPrivateMatchingMessageResponse(
                 1L,
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 "권동민님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
                 false
         );
@@ -839,7 +836,6 @@ class MatchingControllerTest extends ControllerTest {
                         responseFields(
                                 fieldWithPath("receivedMatchingId").type(JsonFieldType.NUMBER).description("내 이력서/팀 소개서에 매칭 PK ID"),
                                 fieldWithPath("senderName").type(JsonFieldType.STRING).description("발신자 이름"),
-                                fieldWithPath("jobRoleNames").type(JsonFieldType.ARRAY).description("발신자의 희망 역할 및 직무"),
                                 fieldWithPath("requestMessage").type(JsonFieldType.STRING).description("매칭 요청 메시지"),
                                 fieldWithPath("receivedTeamProfile").type(JsonFieldType.BOOLEAN).description("이력/소개서 수신 여부")
                         )
@@ -853,7 +849,6 @@ class MatchingControllerTest extends ControllerTest {
         final ReceivedTeamMatchingMessageResponse receivedTeamMatchingMessageResponse = new ReceivedTeamMatchingMessageResponse(
                 1L,
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 "권동민님이 나의 팀 소개서에 보낸 매칭 요청 메시지입니다.",
                 false
         );
@@ -873,7 +868,6 @@ class MatchingControllerTest extends ControllerTest {
                         responseFields(
                                 fieldWithPath("receivedMatchingId").type(JsonFieldType.NUMBER).description("내 이력서/팀 소개서에 매칭 PK ID"),
                                 fieldWithPath("senderName").type(JsonFieldType.STRING).description("발신자 이름"),
-                                fieldWithPath("jobRoleNames").type(JsonFieldType.ARRAY).description("발신자의 희망 역할 및 직무"),
                                 fieldWithPath("requestMessage").type(JsonFieldType.STRING).description("매칭 요청 메시지"),
                                 fieldWithPath("receivedTeamProfile").type(JsonFieldType.BOOLEAN).description("이력/소개서 수신 여부")
                         )
@@ -887,7 +881,6 @@ class MatchingControllerTest extends ControllerTest {
         final RequestPrivateMatchingMessageResponse requestPrivateMatchingMessageResponse = new RequestPrivateMatchingMessageResponse(
                 1L,
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 "권동민님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
                 SenderType.PRIVATE,
                 false
@@ -908,7 +901,6 @@ class MatchingControllerTest extends ControllerTest {
                         responseFields(
                                 fieldWithPath("requestMatchingId").type(JsonFieldType.NUMBER).description("내 이력서/팀 소개서에 매칭 PK ID"),
                                 fieldWithPath("receiverName").type(JsonFieldType.STRING).description("발신자 이름"),
-                                fieldWithPath("jobRoleNames").type(JsonFieldType.ARRAY).description("발신자의 희망 역할 및 직무"),
                                 fieldWithPath("requestMessage").type(JsonFieldType.STRING).description("매칭 요청 메시지"),
                                 fieldWithPath("senderType").type(JsonFieldType.STRING).description("발신자 타입"),
                                 fieldWithPath("requestTeamProfile").type(JsonFieldType.BOOLEAN).description("이력/소개서 수신 여부")
@@ -923,7 +915,6 @@ class MatchingControllerTest extends ControllerTest {
         final RequestPrivateMatchingMessageResponse requestPrivateMatchingMessageResponse = new RequestPrivateMatchingMessageResponse(
                 1L,
                 "권동민",
-                Arrays.asList("개발·데이터"),
                 "리에종님이 나의 내 이력서에 보낸 매칭 요청 메시지입니다.",
                 SenderType.TEAM,
                 false
@@ -944,7 +935,6 @@ class MatchingControllerTest extends ControllerTest {
                         responseFields(
                                 fieldWithPath("requestMatchingId").type(JsonFieldType.NUMBER).description("내 이력서/팀 소개서에 매칭 PK ID"),
                                 fieldWithPath("receiverName").type(JsonFieldType.STRING).description("수신자 이름"),
-                                fieldWithPath("jobRoleNames").type(JsonFieldType.ARRAY).description("수신자의 희망 역할 및 직무"),
                                 fieldWithPath("requestMessage").type(JsonFieldType.STRING).description("매칭 요청 메시지"),
                                 fieldWithPath("senderType").type(JsonFieldType.STRING).description("발신자 타입"),
                                 fieldWithPath("requestTeamProfile").type(JsonFieldType.BOOLEAN).description("이력/소개서 수신 여부")

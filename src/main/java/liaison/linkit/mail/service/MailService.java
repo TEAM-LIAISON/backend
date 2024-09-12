@@ -8,13 +8,13 @@ import java.util.List;
 public interface MailService {
 
     // 1. 내 이력서 -> 내 이력서 매칭 요청 보낸 경우
-    void mailRequestPrivateToPrivate(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderRole, final List<String> senderSkill, final LocalDateTime requestDate, final String requestMessage) throws MessagingException;
+    void mailRequestPrivateToPrivate(final String receiverEmail, final String receiverName, final String senderName, final LocalDateTime requestDate, final String requestMessage) throws MessagingException;
 
     // 2. 팀 소개서 -> 내 이력서 매칭 요청 보낸 경우
     void mailRequestTeamToPrivate(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderActivityTagName, final String senderActivityRegionName, final LocalDateTime requestDate, final String requestMessage) throws MessagingException;
 
     // 3. 내 이력서 -> 팀 소개서로 매칭 요청 보낸 경우
-    void mailRequestPrivateToTeam(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderRole, final List<String> senderSkill, final LocalDateTime requestDate, final String requestMessage) throws MessagingException;
+    void mailRequestPrivateToTeam(final String receiverEmail, final String receiverName, final String senderName, final LocalDateTime requestDate, final String requestMessage) throws MessagingException;
 
     // 4. 팀 소개서 -> 팀 소개서로 매칭 요청 보낸 경우
     void mailRequestTeamToTeam(final String receiverEmail, final String receiverName, final String senderName, final List<String> senderActivityTagName, final String senderActivityRegionName, final LocalDateTime requestDate, final String requestMessage) throws MessagingException;

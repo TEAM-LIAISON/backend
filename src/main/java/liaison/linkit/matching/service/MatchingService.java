@@ -8,9 +8,9 @@ import liaison.linkit.matching.domain.PrivateMatching;
 import liaison.linkit.matching.domain.TeamMatching;
 import liaison.linkit.matching.domain.repository.privateMatching.PrivateMatchingRepository;
 import liaison.linkit.matching.domain.repository.teamMatching.TeamMatchingRepository;
-import liaison.linkit.matching.domain.type.SuccessReceiverDeleteStatusType;
 import liaison.linkit.matching.domain.type.RequestSenderDeleteStatusType;
 import liaison.linkit.matching.domain.type.SenderType;
+import liaison.linkit.matching.domain.type.SuccessReceiverDeleteStatusType;
 import liaison.linkit.matching.domain.type.SuccessSenderDeleteStatusType;
 import liaison.linkit.matching.dto.request.AllowMatchingRequest;
 import liaison.linkit.matching.dto.request.MatchingCreateRequest;
@@ -31,26 +31,16 @@ import liaison.linkit.member.domain.Member;
 import liaison.linkit.member.domain.repository.member.MemberRepository;
 import liaison.linkit.profile.domain.Profile;
 import liaison.linkit.profile.domain.repository.profile.ProfileRepository;
-import liaison.linkit.profile.domain.repository.skill.ProfileSkillRepository;
-import liaison.linkit.profile.domain.repository.skill.SkillRepository;
-import liaison.linkit.profile.domain.repository.jobRole.JobRoleRepository;
-import liaison.linkit.profile.domain.repository.jobRole.ProfileJobRoleRepository;
-import liaison.linkit.profile.domain.role.JobRole;
-import liaison.linkit.profile.domain.role.ProfileJobRole;
-import liaison.linkit.profile.domain.skill.ProfileSkill;
-import liaison.linkit.profile.domain.skill.Skill;
 import liaison.linkit.team.domain.TeamProfile;
 import liaison.linkit.team.domain.activity.ActivityMethod;
 import liaison.linkit.team.domain.activity.ActivityMethodTag;
 import liaison.linkit.team.domain.activity.ActivityRegion;
 import liaison.linkit.team.domain.announcement.TeamMemberAnnouncement;
-import liaison.linkit.team.domain.announcement.TeamMemberAnnouncementJobRole;
-import liaison.linkit.team.domain.repository.teamProfile.TeamProfileRepository;
 import liaison.linkit.team.domain.repository.activity.method.ActivityMethodRepository;
 import liaison.linkit.team.domain.repository.activity.method.ActivityMethodTagRepository;
 import liaison.linkit.team.domain.repository.activity.region.ActivityRegionRepository;
-import liaison.linkit.team.domain.repository.announcement.TeamMemberAnnouncementJobRoleRepository;
 import liaison.linkit.team.domain.repository.announcement.TeamMemberAnnouncementRepository;
+import liaison.linkit.team.domain.repository.teamProfile.TeamProfileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -76,13 +66,8 @@ public class MatchingService {
     private final MemberRepository memberRepository;
     private final PrivateMatchingRepository privateMatchingRepository;
     private final TeamMatchingRepository teamMatchingRepository;
-    private final ProfileJobRoleRepository profileJobRoleRepository;
-    private final JobRoleRepository jobRoleRepository;
-    private final ProfileSkillRepository profileSkillRepository;
-    private final SkillRepository skillRepository;
     private final TeamProfileRepository teamProfileRepository;
     private final TeamMemberAnnouncementRepository teamMemberAnnouncementRepository;
-    private final TeamMemberAnnouncementJobRoleRepository teamMemberAnnouncementJobRoleRepository;
     private final ActivityMethodRepository activityMethodRepository;
     private final ActivityMethodTagRepository activityMethodTagRepository;
     private final ActivityRegionRepository activityRegionRepository;
@@ -176,29 +161,11 @@ public class MatchingService {
         // to 내 이력서
         final PrivateMatching savedPrivateMatching = privateMatchingRepository.save(newPrivateMatching);
 
-        List<ProfileJobRole> profileJobRoles = profileJobRoleRepository.findAllByProfileId(savedPrivateMatching.getMember().getProfile().getId());
-        List<String> jobRoleNames = profileJobRoles.stream()
-                .map(profileJobRole -> jobRoleRepository.findById(profileJobRole.getJobRole().getId()))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .map(JobRole::getJobRoleName)
-                .toList();
-
-        List<ProfileSkill> profileSkills = profileSkillRepository.findAllByProfileId(savedPrivateMatching.getMember().getProfile().getId());
-        List<String> skillNames = profileSkills.stream()
-                .map(profileSkill -> skillRepository.findById(profileSkill.getSkill().getId()))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .map(Skill::getSkillName)
-                .toList();
-
         mailService.mailRequestPrivateToPrivate(
                 // 수신자 이메일
                 savedPrivateMatching.getProfile().getMember().getEmail(),
                 savedPrivateMatching.getProfile().getMember().getMemberBasicInform().getMemberName(),
                 savedPrivateMatching.getMember().getMemberBasicInform().getMemberName(),
-                jobRoleNames,
-                skillNames,
                 savedPrivateMatching.getCreatedAt(),
                 savedPrivateMatching.getRequestMessage()
         );
@@ -376,28 +343,10 @@ public class MatchingService {
 
         final TeamMatching savedTeamMatching = teamMatchingRepository.save(newTeamMatching);
 
-        List<ProfileJobRole> profileJobRoles = profileJobRoleRepository.findAllByProfileId(savedTeamMatching.getMember().getProfile().getId());
-        List<String> jobRoleNames = profileJobRoles.stream()
-                .map(profileJobRole -> jobRoleRepository.findById(profileJobRole.getJobRole().getId()))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .map(JobRole::getJobRoleName)
-                .toList();
-
-        List<ProfileSkill> profileSkills = profileSkillRepository.findAllByProfileId(savedTeamMatching.getMember().getProfile().getId());
-        List<String> skillNames = profileSkills.stream()
-                .map(profileSkill -> skillRepository.findById(profileSkill.getSkill().getId()))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .map(Skill::getSkillName)
-                .toList();
-
         mailService.mailRequestPrivateToTeam(
                 savedTeamMatching.getTeamMemberAnnouncement().getTeamProfile().getMember().getEmail(),
                 savedTeamMatching.getTeamMemberAnnouncement().getTeamProfile().getTeamMiniProfile().getTeamName(),
                 savedTeamMatching.getMember().getMemberBasicInform().getMemberName(),
-                jobRoleNames,
-                skillNames,
                 savedTeamMatching.getCreatedAt(),
                 savedTeamMatching.getRequestMessage()
         );
@@ -530,12 +479,10 @@ public class MatchingService {
     ) {
         // 이 private matching -> member -> 보낸 사람의 ID / profile -> 수신자의 내 이력서 ID
         final PrivateMatching privateMatching = getPrivateMatching(privateMatchingId);
-        final List<String> jobRoleNames = getJobRoleNames(privateMatching.getMember().getId());
 
         return new ReceivedPrivateMatchingMessageResponse(
                 privateMatching.getId(),
                 privateMatching.getMember().getMemberBasicInform().getMemberName(),
-                jobRoleNames,
                 privateMatching.getRequestMessage(),
                 false
         );
@@ -549,9 +496,7 @@ public class MatchingService {
         final PrivateMatching privateMatching = getPrivateMatching(privateMatchingId);
         return new ReceivedPrivateMatchingMessageResponse(
                 privateMatching.getId(),
-                // 상대 팀의 이름 필요
                 privateMatching.getMember().getTeamProfile().getTeamMiniProfile().getTeamName(),
-                null,
                 privateMatching.getRequestMessage(),
                 false
         );
@@ -563,12 +508,10 @@ public class MatchingService {
     ) {
         // 보낸 개인의 이름 필요
         final TeamMatching teamMatching = getTeamMatching(teamMatchingId);
-        final List<String> jobRoleNames = getJobRoleNames(teamMatching.getMember().getId());
         return new ReceivedTeamMatchingMessageResponse(
                 teamMatching.getId(),
                 // 개인 이름
                 teamMatching.getMember().getMemberBasicInform().getMemberName(),
-                jobRoleNames,
                 teamMatching.getRequestMessage(),
                 false
         );
@@ -580,15 +523,10 @@ public class MatchingService {
     ) {
         // 이 private matching -> member -> 나의 ID / profile -> 상대의 내 이력서 ID
         final PrivateMatching privateMatching = getPrivateMatching(privateMatchingId);
-
-        // 상대의 jobRoleName 필요
-        final List<String> jobRoleNames = getJobRoleNames(privateMatching.getProfile().getMember().getId());
-
         return new RequestPrivateMatchingMessageResponse(
                 privateMatching.getId(),
                 // 수신자 이름
                 privateMatching.getProfile().getMember().getMemberBasicInform().getMemberName(),
-                jobRoleNames,
                 privateMatching.getRequestMessage(),
                 privateMatching.getSenderType(),
                 false
@@ -600,13 +538,10 @@ public class MatchingService {
             final Long privateMatchingId
     ) {
         final PrivateMatching privateMatching = getPrivateMatching(privateMatchingId);
-        // 상대의 jobRoleName 필요
-        final List<String> jobRoleNames = getJobRoleNames(privateMatching.getProfile().getMember().getId());
 
         return new RequestPrivateMatchingMessageResponse(
                 privateMatching.getId(),
                 privateMatching.getProfile().getMember().getMemberBasicInform().getMemberName(),
-                jobRoleNames,
                 privateMatching.getRequestMessage(),
                 privateMatching.getSenderType(),
                 false
@@ -709,30 +644,6 @@ public class MatchingService {
                 );
             }
         }
-    }
-
-
-
-    public List<String> getJobRoleNames(final Long memberId) {
-        final Profile profile = getProfile(memberId);
-        final List<ProfileJobRole> profileJobRoleList = getProfileJobRoleList(profile.getId());
-
-        List<JobRole> jobRoleList = profileJobRoleList.stream()
-                .map(ProfileJobRole::getJobRole)
-                .toList();
-
-        return jobRoleList.stream()
-                .map(JobRole::getJobRoleName)
-                .toList();
-    }
-
-    private List<ProfileJobRole> getProfileJobRoleList(final Long profileId) {
-        return profileJobRoleRepository.findAllByProfileId(profileId);
-    }
-
-    private TeamMemberAnnouncementJobRole getTeamMemberAnnouncementJobRole(final Long teamMemberAnnouncementId) {
-        return teamMemberAnnouncementJobRoleRepository.findByTeamMemberAnnouncementId(teamMemberAnnouncementId)
-                .orElseThrow(() -> new BadRequestException(NOT_FOUND_TEAM_MEMBER_ANNOUNCEMENT_JOB_ROLE));
     }
 
     public void acceptPrivateMatching(final Long privateMatchingId, final AllowMatchingRequest allowMatchingRequest) throws MessagingException {

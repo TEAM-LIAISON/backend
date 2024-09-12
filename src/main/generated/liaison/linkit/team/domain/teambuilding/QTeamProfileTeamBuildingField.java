@@ -26,8 +26,6 @@ public class QTeamProfileTeamBuildingField extends EntityPathBase<TeamProfileTea
 
     public final liaison.linkit.profile.domain.teambuilding.QTeamBuildingField teamBuildingField;
 
-    public final liaison.linkit.team.domain.QTeamProfile teamProfile;
-
     public QTeamProfileTeamBuildingField(String variable) {
         this(TeamProfileTeamBuildingField.class, forVariable(variable), INITS);
     }
@@ -47,7 +45,6 @@ public class QTeamProfileTeamBuildingField extends EntityPathBase<TeamProfileTea
     public QTeamProfileTeamBuildingField(Class<? extends TeamProfileTeamBuildingField> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.teamBuildingField = inits.isInitialized("teamBuildingField") ? new liaison.linkit.profile.domain.teambuilding.QTeamBuildingField(forProperty("teamBuildingField")) : null;
-        this.teamProfile = inits.isInitialized("teamProfile") ? new liaison.linkit.team.domain.QTeamProfile(forProperty("teamProfile"), inits.get("teamProfile")) : null;
     }
 
 }

@@ -1,6 +1,5 @@
 package liaison.linkit.profile.presentation;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
 import liaison.linkit.global.ControllerTest;
 import liaison.linkit.login.domain.MemberTokens;
@@ -12,14 +11,11 @@ import liaison.linkit.profile.dto.response.completion.CompletionResponse;
 import liaison.linkit.profile.dto.response.education.EducationResponse;
 import liaison.linkit.profile.dto.response.isValue.ProfileIsValueResponse;
 import liaison.linkit.profile.dto.response.miniProfile.MiniProfileResponse;
-import liaison.linkit.profile.dto.response.onBoarding.JobAndSkillResponse;
 import liaison.linkit.profile.dto.response.profileRegion.ProfileRegionResponse;
-import liaison.linkit.profile.dto.response.teamBuilding.ProfileTeamBuildingFieldResponse;
 import liaison.linkit.profile.service.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -48,9 +44,6 @@ public class BrowsePrivateProfileControllerTest extends ControllerTest {
     private static final MemberTokens MEMBER_TOKENS = new MemberTokens("refreshToken", "accessToken");
     private static final Cookie COOKIE = new Cookie("refresh-token", MEMBER_TOKENS.getRefreshToken());
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @MockBean
     public ProfileOnBoardingService profileOnBoardingService;
     @MockBean
@@ -59,8 +52,6 @@ public class BrowsePrivateProfileControllerTest extends ControllerTest {
     public MiniProfileService miniProfileService;
     @MockBean
     public CompletionService completionService;
-    @MockBean
-    public TeamBuildingFieldService teamBuildingFieldService;
     @MockBean
     public AntecedentsService antecedentsService;
     @MockBean
@@ -97,25 +88,18 @@ public class BrowsePrivateProfileControllerTest extends ControllerTest {
         given(browsePrivateProfileService.getTargetPrivateProfileIdByMiniProfileId(1L)).willReturn(1L);
 
         final ProfileIsValueResponse profileIsValueResponse = new ProfileIsValueResponse(
-                true, true, true, true, true, true, true, true, true
+                true, true, true, true, true, true, true
         );
         given(browsePrivateProfileService.getProfileIsValue(1L)).willReturn(profileIsValueResponse);
 
-        final boolean isPrivateProfileEssential = (
-                profileIsValueResponse.isProfileTeamBuildingField() &&
-                        profileIsValueResponse.isProfileRegion() &&
-                        profileIsValueResponse.isMiniProfile() &&
-                        profileIsValueResponse.isJobAndSkill()
-        );
-
         final MiniProfileResponse miniProfileResponse = new MiniProfileResponse(
                 1L, "시니어 소프트웨어 개발자", "https://image.linkit.im/images/linkit_logo.png", true,
-                Arrays.asList("2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년"), "권동민", Arrays.asList("개발·데이터"), true
+                Arrays.asList("2024 레드닷 수상", "스타트업 경력", "서울대 디자인", "대기업 경력 3년"), "권동민", true
         );
         given(miniProfileService.getBrowsePersonalMiniProfile(1L, 1L)).willReturn(miniProfileResponse);
 
         final CompletionResponse completionResponse = new CompletionResponse(
-                "100.0", true, true, true, true, true, true, true, true
+                "100.0", true, true, true, true, true, true, true
         );
         given(completionService.getCompletion(1L)).willReturn(completionResponse);
 
@@ -123,15 +107,6 @@ public class BrowsePrivateProfileControllerTest extends ControllerTest {
                 "안녕하세요, 저는 다양한 프로젝트와 혁신적인 아이디어를 구현하는 데 열정을 가진 기획자입니다. 대학에서 경영학을 전공하고, 여러 기업에서 프로젝트 매니저와 기획자로서의 경험을 쌓아왔습니다."
         );
         given(profileService.getProfileIntroduction(1L)).willReturn(profileIntroductionResponse);
-
-        List<String> jobRoleNames = Arrays.asList("공모전, 대회, 창업");
-        List<String> skillNames = Arrays.asList("Notion, Figma");
-        final JobAndSkillResponse jobAndSkillResponse = new JobAndSkillResponse(jobRoleNames, skillNames);
-        given(profileOnBoardingService.getJobAndSkill(1L)).willReturn(jobAndSkillResponse);
-
-        List<String> teamBuildingFieldNames = Arrays.asList("공모전", "대회", "창업");
-        final ProfileTeamBuildingFieldResponse profileTeamBuildingFieldResponse = new ProfileTeamBuildingFieldResponse(teamBuildingFieldNames);
-        given(teamBuildingFieldService.getAllProfileTeamBuildingFields(1L)).willReturn(profileTeamBuildingFieldResponse);
 
         final ProfileRegionResponse profileRegionResponse = new ProfileRegionResponse("서울특별시", "강남구");
         given(profileRegionService.getPersonalProfileRegion(1L)).willReturn(profileRegionResponse);
@@ -164,14 +139,12 @@ public class BrowsePrivateProfileControllerTest extends ControllerTest {
         given(awardsService.getAllAwards(1L)).willReturn(awardsResponses);
 
         when(browsePrivateProfileService.getProfileResponse(
-                any(), any(), any(), any(), any(), any(), any(), any(), any(), any()
+                any(), any(), any(), any(), any(), any(), any(), any()
         )).thenReturn(BrowsePrivateProfileResponse.privateProfile(
                 1L,
                 miniProfileResponse,
                 completionResponse,
                 profileIntroductionResponse,
-                jobAndSkillResponse,
-                profileTeamBuildingFieldResponse,
                 profileRegionResponse,
                 antecedentsResponses,
                 educationResponses,
@@ -198,14 +171,11 @@ public class BrowsePrivateProfileControllerTest extends ControllerTest {
                                 fieldWithPath("miniProfileResponse.myKeywordNames").type(JsonFieldType.ARRAY).description("나를 소개하는 키워드 목록"),
                                 fieldWithPath("miniProfileResponse.isActivate").type(JsonFieldType.BOOLEAN).description("미니 프로필 활성화 여부"),
                                 fieldWithPath("miniProfileResponse.memberName").type(JsonFieldType.STRING).description("회원 이름"),
-                                fieldWithPath("miniProfileResponse.jobRoleNames").type(JsonFieldType.ARRAY).description("직무 및 역할"),
 
                                 // completionResponse
                                 subsectionWithPath("completionResponse").description("프로필의 완성도 정보"),
                                 fieldWithPath("completionResponse.completion").type(JsonFieldType.STRING).description("프로필 완성도 (백분율)"),
                                 fieldWithPath("completionResponse.introduction").type(JsonFieldType.BOOLEAN).description("소개의 완성 여부"),
-                                fieldWithPath("completionResponse.profileSkill").type(JsonFieldType.BOOLEAN).description("스킬 섹션의 완성 여부"),
-                                fieldWithPath("completionResponse.profileTeamBuildingField").type(JsonFieldType.BOOLEAN).description("팀 빌딩 필드의 완성 여부"),
                                 fieldWithPath("completionResponse.profileRegion").type(JsonFieldType.BOOLEAN).description("지역 정보의 완성 여부"),
                                 fieldWithPath("completionResponse.antecedents").type(JsonFieldType.BOOLEAN).description("이력 사항의 완성 여부"),
                                 fieldWithPath("completionResponse.education").type(JsonFieldType.BOOLEAN).description("교육 이력의 완성 여부"),
@@ -215,15 +185,6 @@ public class BrowsePrivateProfileControllerTest extends ControllerTest {
                                 // profileIntroductionResponse
                                 subsectionWithPath("profileIntroductionResponse").description("프로필 소개"),
                                 fieldWithPath("profileIntroductionResponse.introduction").type(JsonFieldType.STRING).description("소개 내용"),
-
-                                // jobAndSkillResponse
-                                subsectionWithPath("jobAndSkillResponse").description("나의 직무/역할 및 보유 기술 정보"),
-                                fieldWithPath("jobAndSkillResponse.jobRoleNames").type(JsonFieldType.ARRAY).description("직무/역할 명칭"),
-                                fieldWithPath("jobAndSkillResponse.skillNames").type(JsonFieldType.ARRAY).description("보유 기술 명칭"),
-
-                                // profileTeamBuildingFieldResponse
-                                subsectionWithPath("profileTeamBuildingFieldResponse").description("팀 빌딩 필드 응답"),
-                                fieldWithPath("profileTeamBuildingFieldResponse.teamBuildingFieldNames").type(JsonFieldType.ARRAY).description("팀 빌딩 필드 이름"),
 
                                 // profileRegionResponse
                                 subsectionWithPath("profileRegionResponse").description("활동 지역 및 위치 응답"),

@@ -36,12 +36,6 @@ public class SearchController {
     @GetMapping("/search/private/profile")
     public ResponseEntity<Page<MiniProfileResponse>> findPrivateMiniProfile(
             @PageableDefault(size = 1000, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable,
-            // 필터링 항목 1. 팀빌딩 분야
-            @RequestParam(required = false) final List<String> teamBuildingFieldName,
-            // 필터링 항목 2. 희망 역할
-            @RequestParam(required = false) final List<String> jobRoleName,
-            // 필터링 항목 3. 보유 기술
-            @RequestParam(required = false) final List<String> skillName,
             // 필터링 항목 4. 활동 지역 (시/도)
             @RequestParam(required = false) final String cityName,
             // 필터링 항목 4. 활동 지역 (시/군/구)
@@ -50,9 +44,6 @@ public class SearchController {
         log.info("팀원 찾기 요청이 들어왔습니다.");
         final Page<MiniProfileResponse> privateMiniProfiles = searchService.findPrivateMiniProfile(
                 pageable,
-                teamBuildingFieldName,
-                jobRoleName,
-                skillName,
                 cityName,
                 divisionName
         );
@@ -66,9 +57,6 @@ public class SearchController {
     public ResponseEntity<Page<BrowseMiniProfileResponse>> findPrivateMiniProfileLogin(
             @Auth final Accessor accessor,
             @PageableDefault(size = 1000, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable,
-            @RequestParam(required = false) final List<String> teamBuildingFieldName,
-            @RequestParam(required = false) final List<String> jobRoleName,
-            @RequestParam(required = false) final List<String> skillName,
             @RequestParam(required = false) final String cityName,
             @RequestParam(required = false) final String divisionName
     ) {
@@ -76,9 +64,6 @@ public class SearchController {
         final Page<BrowseMiniProfileResponse> browseMiniProfileResponses = searchService.findPrivateMiniProfileLogin(
                 accessor.getMemberId(),
                 pageable,
-                teamBuildingFieldName,
-                jobRoleName,
-                skillName,
                 cityName,
                 divisionName
         );
@@ -90,12 +75,6 @@ public class SearchController {
     @GetMapping("/search/team/profile")
     public ResponseEntity<Page<SearchTeamProfileResponse>> findSearchTeamProfile(
             @PageableDefault(size = 1000) final Pageable pageable,
-            // 필터링 항목 1. 희망 팀빌딩 분야
-            @RequestParam(required = false) final List<String> teamBuildingFieldName,
-            // 필터링 항목 2. 직무 및 역할
-            @RequestParam(required = false) final List<String> jobRoleName,
-            // 필터링 항목 3. 요구 역량
-            @RequestParam(required = false) final List<String> skillName,
             // 필터링 항목 4. 활동 지역 (시/도)
             @RequestParam(required = false) final String cityName,
             // 필터링 항목 4. 활동 지역 (시/군/구)
@@ -106,9 +85,6 @@ public class SearchController {
         log.info("팀 찾기(팀원 공고) 요청이 들어왔습니다.");
         final Page<SearchTeamProfileResponse> searchTeamProfileResponsePage = searchService.findTeamMemberAnnouncementsWithTeamMiniProfile(
                 pageable,
-                teamBuildingFieldName,
-                jobRoleName,
-                skillName,
                 cityName,
                 divisionName,
                 activityTagName
@@ -122,9 +98,6 @@ public class SearchController {
     public ResponseEntity<Page<SearchBrowseTeamProfileResponse>> findSearchTeamProfileAfterLogin(
             @Auth final Accessor accessor,
             @PageableDefault(size = 1000) final Pageable pageable,
-            @RequestParam(required = false) final List<String> teamBuildingFieldName,
-            @RequestParam(required = false) final List<String> jobRoleName,
-            @RequestParam(required = false) final List<String> skillName,
             @RequestParam(required = false) final String cityName,
             @RequestParam(required = false) final String divisionName,
             @RequestParam(required = false) final List<String> activityTagName
@@ -133,9 +106,6 @@ public class SearchController {
         final Page<SearchBrowseTeamProfileResponse> searchTeamProfileResponsePage = searchService.findTeamMemberAnnouncementsWithTeamMiniProfileAfterLogin(
                 accessor.getMemberId(),
                 pageable,
-                teamBuildingFieldName,
-                jobRoleName,
-                skillName,
                 cityName,
                 divisionName,
                 activityTagName
@@ -147,9 +117,6 @@ public class SearchController {
     @MemberOnly
     public ResponseEntity<?> searchPrivateMiniProfileLogin(
             @RequestParam(value = "lastIndex", required = false) final Long lastIndex,
-            @RequestParam(required = false) final List<String> teamBuildingFieldName,
-            @RequestParam(required = false) final List<String> jobRoleName,
-            @RequestParam(required = false) final List<String> skillName,
             @RequestParam(required = false) final String cityName,
             @RequestParam(required = false) final String divisionName,
             final Pageable pageable
@@ -157,9 +124,6 @@ public class SearchController {
         final Slice<MiniProfileResponse> miniProfileResponses = searchService.searchPrivateMiniProfile(
                 lastIndex,
                 pageable,
-                teamBuildingFieldName,
-                jobRoleName,
-                skillName,
                 cityName,
                 divisionName
         );

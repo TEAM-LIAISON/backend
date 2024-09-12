@@ -8,7 +8,6 @@ import liaison.linkit.global.exception.ExceptionCode;
 import liaison.linkit.team.dto.response.TeamMemberIntroductionResponse;
 import liaison.linkit.team.dto.response.TeamProfileIntroductionResponse;
 import liaison.linkit.team.dto.response.TeamProfileIsValueResponse;
-import liaison.linkit.team.dto.response.TeamProfileTeamBuildingFieldResponse;
 import liaison.linkit.team.dto.response.activity.ActivityResponse;
 import liaison.linkit.team.dto.response.announcement.TeamMemberAnnouncementResponse;
 import liaison.linkit.team.dto.response.attach.TeamAttachResponse;
@@ -42,8 +41,6 @@ public class BrowseTeamProfileController {
     public final TeamMiniProfileService teamMiniProfileService;
     // 4.3.
     public final TeamCompletionService teamCompletionService;
-    // 4.4.
-    public final TeamProfileTeamBuildingFieldService teamProfileTeamBuildingFieldService;
     // 4.5.
     public final TeamMemberAnnouncementService teamMemberAnnouncementService;
     // 4.6.
@@ -85,10 +82,6 @@ public class BrowseTeamProfileController {
             final TeamCompletionResponse teamCompletionResponse = getTeamCompletionResponse(browseTargetTeamProfileId);
             log.info("teamCompletionResponse={}", teamCompletionResponse);
 
-            // 4.4. 희망 팀빌딩 분야
-            final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse = getTeamProfileTeamBuildingFieldResponse(browseTargetTeamProfileId, teamProfileIsValueResponse.isTeamProfileTeamBuildingField());
-            log.info("teamProfileTeamBuildingFieldResponse={}", teamProfileTeamBuildingFieldResponse);
-
             // 4.5. 팀원 공고
             final List<TeamMemberAnnouncementResponse> teamMemberAnnouncementResponse = getTeamMemberAnnouncement(browseTargetTeamProfileId, teamProfileIsValueResponse.isTeamMemberAnnouncement());
             log.info("teamMemberAnnouncementResponse={}", teamMemberAnnouncementResponse);
@@ -117,7 +110,6 @@ public class BrowseTeamProfileController {
                     browseTargetTeamProfileId,
                     teamMiniProfileResponse,
                     teamCompletionResponse,
-                    teamProfileTeamBuildingFieldResponse,
                     teamMemberAnnouncementResponse,
                     activityResponse,
                     teamProfileIntroductionResponse,
@@ -138,20 +130,6 @@ public class BrowseTeamProfileController {
             final Long memberId
     ) {
         return teamCompletionService.getTeamCompletion(memberId);
-    }
-
-    // 4.4. 희망 팀빌딩 분야
-    private TeamProfileTeamBuildingFieldResponse getTeamProfileTeamBuildingFieldResponse(
-            final Long memberId,
-            final boolean isTeamProfileTeamBuildingField
-    ) {
-        // true case
-        if (isTeamProfileTeamBuildingField) {
-            return teamProfileTeamBuildingFieldService.getAllTeamProfileTeamBuildingFields(memberId);
-        } else {
-            return new TeamProfileTeamBuildingFieldResponse();
-        }
-
     }
 
     // 4.5. 팀원 공고

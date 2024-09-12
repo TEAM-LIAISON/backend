@@ -2,7 +2,6 @@ package liaison.linkit.team.dto.response.browse;
 
 import liaison.linkit.team.dto.response.TeamMemberIntroductionResponse;
 import liaison.linkit.team.dto.response.TeamProfileIntroductionResponse;
-import liaison.linkit.team.dto.response.TeamProfileTeamBuildingFieldResponse;
 import liaison.linkit.team.dto.response.activity.ActivityResponse;
 import liaison.linkit.team.dto.response.announcement.TeamMemberAnnouncementResponse;
 import liaison.linkit.team.dto.response.attach.TeamAttachResponse;
@@ -21,7 +20,6 @@ public class BrowseTeamProfileResponse {
     private final Long teamProfileId;
     private final TeamMiniProfileResponse teamMiniProfileResponse;
     private final TeamCompletionResponse teamCompletionResponse;
-    private final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse;
     private final List<TeamMemberAnnouncementResponse> teamMemberAnnouncementResponses;
     private final ActivityResponse activityResponse;
     private final TeamProfileIntroductionResponse teamProfileIntroductionResponse;
@@ -33,7 +31,6 @@ public class BrowseTeamProfileResponse {
             final Long teamProfileId,
             final TeamMiniProfileResponse teamMiniProfileResponse,
             final TeamCompletionResponse teamCompletionResponse,
-            final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse,
             final List<TeamMemberAnnouncementResponse> teamMemberAnnouncementResponses,
             final ActivityResponse activityResponse,
             final TeamProfileIntroductionResponse teamProfileIntroductionResponse,
@@ -45,7 +42,6 @@ public class BrowseTeamProfileResponse {
                 teamProfileId,
                 teamMiniProfileResponse,
                 teamCompletionResponse,
-                teamProfileTeamBuildingFieldResponse,
                 teamMemberAnnouncementResponses,
                 activityResponse,
                 teamProfileIntroductionResponse,

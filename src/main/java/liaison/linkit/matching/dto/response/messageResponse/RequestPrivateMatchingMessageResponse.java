@@ -4,8 +4,6 @@ import liaison.linkit.matching.domain.type.SenderType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @Getter
 @RequiredArgsConstructor
 public class RequestPrivateMatchingMessageResponse {
@@ -13,8 +11,6 @@ public class RequestPrivateMatchingMessageResponse {
     private final Long requestMatchingId;
     // 수신자 이름
     private final String receiverName;
-
-    private final List<String> jobRoleNames;
     // 매칭 요청 메시지
     private final String requestMessage;
     // 발신자가 누구인지

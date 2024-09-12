@@ -21,9 +21,6 @@ public class CompletionResponse {
     // 보유기술 기입여부 -> Default
     private final boolean isProfileSkill;
 
-    // 희망 팀빌딩 분야 기입여부 -> Default
-    private final boolean isProfileTeamBuildingField;
-
     // 활동 지역 및 위치 기입여부
     private final boolean isProfileRegion;
 
@@ -45,7 +42,6 @@ public class CompletionResponse {
                 String.format("%.1f", profile.getCompletion()),
                 profile.getIsIntroduction(),
                 profile.getIsProfileSkill(),
-                profile.getIsProfileTeamBuildingField(),
                 profile.getIsProfileRegion(),
                 profile.getIsAntecedents(),
                 profile.getIsEducation(),

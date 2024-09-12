@@ -64,8 +64,6 @@ public class QProfile extends EntityPathBase<Profile> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
 
-    public final ListPath<liaison.linkit.profile.domain.role.ProfileJobRole, liaison.linkit.profile.domain.role.QProfileJobRole> profileJobRoleList = this.<liaison.linkit.profile.domain.role.ProfileJobRole, liaison.linkit.profile.domain.role.QProfileJobRole>createList("profileJobRoleList", liaison.linkit.profile.domain.role.ProfileJobRole.class, liaison.linkit.profile.domain.role.QProfileJobRole.class, PathInits.DIRECT2);
-
     //inherited
     public final EnumPath<liaison.linkit.global.type.StatusType> status = _super.status;
 

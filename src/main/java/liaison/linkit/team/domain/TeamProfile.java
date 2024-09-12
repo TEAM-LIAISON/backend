@@ -241,9 +241,6 @@ public class TeamProfile extends BaseEntity {
         this.isTeamAttachFile = isTeamAttachFile;
     }
 
-    public boolean getIsTeamProfileTeamBuildingField() {
-        return isTeamProfileTeamBuildingField;
-    }
     public boolean getIsTeamMemberAnnouncement() {
         return isTeamMemberAnnouncement;
     }

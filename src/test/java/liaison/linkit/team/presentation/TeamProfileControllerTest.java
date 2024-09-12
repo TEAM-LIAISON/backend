@@ -64,8 +64,6 @@ public class TeamProfileControllerTest extends ControllerTest {
     @MockBean
     private TeamCompletionService teamCompletionService;
     @MockBean
-    private TeamProfileTeamBuildingFieldService teamProfileTeamBuildingFieldService;
-    @MockBean
     private TeamMemberAnnouncementService teamMemberAnnouncementService;
     @MockBean
     private ActivityService activityService;
@@ -117,13 +115,12 @@ public class TeamProfileControllerTest extends ControllerTest {
                 true,
                 true,
                 true,
-                true,
                 true
         );
         given(teamProfileService.getTeamProfileIsValue(1L)).willReturn(teamProfileIsValueResponse);
 
         // 팀 소개서 필수 항목 존재 여부
-        final boolean isTeamProfileEssential = (teamProfileIsValueResponse.isTeamMiniProfile() && teamProfileIsValueResponse.isActivity() && teamProfileIsValueResponse.isTeamProfileTeamBuildingField());
+        final boolean isTeamProfileEssential = (teamProfileIsValueResponse.isTeamMiniProfile() && teamProfileIsValueResponse.isActivity());
 
 
         // 4.1. 미니 프로필
@@ -149,26 +146,16 @@ public class TeamProfileControllerTest extends ControllerTest {
                 true,
                 true,
                 true,
-                true,
                 true
         );
         given(teamCompletionService.getTeamCompletion(1L)).willReturn(teamCompletionResponse);
-
-        // 4.4. 희망 팀빌딩 분야
-        final List<String> teamBuildingFieldNames = Arrays.asList("공모전", "대회", "창업");
-        final TeamProfileTeamBuildingFieldResponse teamProfileTeamBuildingFieldResponse = new TeamProfileTeamBuildingFieldResponse(
-                teamBuildingFieldNames
-        );
-        given(teamProfileTeamBuildingFieldService.getAllTeamProfileTeamBuildingFields(1L)).willReturn(teamProfileTeamBuildingFieldResponse);
 
         // 4.5. 팀원 공고
         final TeamMemberAnnouncementResponse firstTeamMemberAnnouncementResponse = new TeamMemberAnnouncementResponse(
                 1L,
                 "https://image.linkit.im/images/linkit_logo.png",
                 "리에종",
-                "기획·경영",
                 "주요 업무입니다. (첫번째 팀원 공고)",
-                Arrays.asList("서비스 기획", "데이터 엔지니어"),
                 "지원 절차입니다. (첫번째 팀원 공고)",
                 false
         );
@@ -177,9 +164,7 @@ public class TeamProfileControllerTest extends ControllerTest {
                 2L,
                 "https://image.linkit.im/images/linkit_logo.png",
                 "리에종",
-                "디자인",
                 "주요 업무입니다. (두번째 팀원 공고)",
-                Arrays.asList("웹 디자인", "앱 디자인"),
                 "지원 절차입니다. (두번째 팀원 공고)",
                 false
         );
@@ -273,7 +258,6 @@ public class TeamProfileControllerTest extends ControllerTest {
                 isTeamProfileEssential,
                 teamMiniProfileResponse,
                 teamCompletionResponse,
-                teamProfileTeamBuildingFieldResponse,
                 teamMemberAnnouncementResponseList,
                 activityResponse,
                 teamProfileIntroductionResponse,
@@ -286,7 +270,6 @@ public class TeamProfileControllerTest extends ControllerTest {
                 isTeamProfileEssential,
                 teamMiniProfileResponse,
                 teamCompletionResponse,
-                teamProfileTeamBuildingFieldResponse,
                 teamMemberAnnouncementResponseList,
                 activityResponse,
                 teamProfileIntroductionResponse,
@@ -328,7 +311,6 @@ public class TeamProfileControllerTest extends ControllerTest {
                                         // 4.3.
                                         subsectionWithPath("teamCompletionResponse").type(JsonFieldType.OBJECT).description("팀 소개서 완성도 응답 객체"),
                                         fieldWithPath("teamCompletionResponse.teamCompletion").type(JsonFieldType.STRING).description("팀 소개서 완성도 % 값"),
-                                        fieldWithPath("teamCompletionResponse.teamProfileTeamBuildingField").type(JsonFieldType.BOOLEAN).description("희망 팀빌딩 분야 기입 여부"),
                                         fieldWithPath("teamCompletionResponse.teamMemberAnnouncement").type(JsonFieldType.BOOLEAN).description("팀원 공고"),
                                         fieldWithPath("teamCompletionResponse.activity").type(JsonFieldType.BOOLEAN).description("활동 방식 및 활동 지역 및 위치"),
                                         fieldWithPath("teamCompletionResponse.teamIntroduction").type(JsonFieldType.BOOLEAN).description("팀 소개"),
@@ -336,17 +318,11 @@ public class TeamProfileControllerTest extends ControllerTest {
                                         fieldWithPath("teamCompletionResponse.history").type(JsonFieldType.BOOLEAN).description("연혁"),
                                         fieldWithPath("teamCompletionResponse.teamAttach").type(JsonFieldType.BOOLEAN).description("첨부"),
 
-                                        // 4.4.
-                                        subsectionWithPath("teamProfileTeamBuildingFieldResponse").type(JsonFieldType.OBJECT).description("희망 팀빌딩 분야 응답 객체"),
-                                        fieldWithPath("teamProfileTeamBuildingFieldResponse.teamProfileTeamBuildingFieldNames").type(JsonFieldType.ARRAY).description("희망 팀빌딩 분야 이름"),
-
                                         // 4.5.
                                         subsectionWithPath("teamMemberAnnouncementResponses").type(JsonFieldType.ARRAY).description("팀원 공고 응답 객체"),
                                         fieldWithPath("teamMemberAnnouncementResponses[].id").type(JsonFieldType.NUMBER).description("팀원 공고 응답 객체 ID"),
                                         fieldWithPath("teamMemberAnnouncementResponses[].teamName").type(JsonFieldType.STRING).description("팀 이름"),
-                                        fieldWithPath("teamMemberAnnouncementResponses[].jobRoleName").type(JsonFieldType.STRING).description("직무, 역할 이름"),
                                         fieldWithPath("teamMemberAnnouncementResponses[].mainBusiness").type(JsonFieldType.STRING).description("팀원 공고 주요 업무"),
-                                        fieldWithPath("teamMemberAnnouncementResponses[].skillNames").type(JsonFieldType.ARRAY).description("보유 역량 이름 배열"),
                                         fieldWithPath("teamMemberAnnouncementResponses[].applicationProcess").type(JsonFieldType.STRING).description("지원 절차"),
 
                                         // 4.6.
